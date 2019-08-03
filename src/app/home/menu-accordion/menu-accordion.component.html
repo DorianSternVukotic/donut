@@ -1,0 +1,20 @@
+
+<ion-list>
+  <div *ngFor="let group of groups">
+    <ion-item class="item-stable"
+              (click)="toggleGroup(group)"
+              [ngClass]="{'active': isGroupShown(group)}">
+      <ion-icon [name]="isGroupShown(group) ? 'remove' : 'add'" ></ion-icon>
+      <!--<i class="icon" [ngClass]="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>-->
+       &nbsp;
+       Group {{group.name}}
+     </ion-item>
+     <ion-item class="item-accordion"
+               *ngFor="let item of group.items"
+               [hidden]="!isGroupShown(group)">
+       {{item}}
+    </ion-item>
+  </div>
+</ion-list>
+
+
