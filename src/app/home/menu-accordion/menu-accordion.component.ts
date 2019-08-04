@@ -35,7 +35,6 @@ export class MenuAccordionComponent implements OnInit {
   addMealToSelected(mealId) {
     this.mealItemService.addSelectedMeal(mealId);
     this.mealItems = this.mealItemService.getAvailableMeals();
-    console.log(this.mealItems);
   }
   removeMealFromSelected(mealId) {
     this.mealItemService.removeSelectedMeal(mealId);

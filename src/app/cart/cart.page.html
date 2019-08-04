@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div *ngFor="let mealGroup of selectedMeals">
+      <h2>{{mealGroup.groupName}}</h2>
+      <ion-item *ngFor="let meal of mealGroup.meals ">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-input type="number" [value]="meal.orderedCount" size="2"></ion-input>
+            </ion-col>
+            <ion-col>
+              {{meal.name}}
+            </ion-col>
+            <ion-col>
+              {{meal.displayPrice}} kn
+            </ion-col>
+            <ion-col>
+              <ion-button><ion-icon name="close"></ion-icon></ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

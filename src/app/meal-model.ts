@@ -5,4 +5,5 @@ export interface MealModel {
     image: string;
     description: string;
     selected: boolean;
+    orderedCount: number;
 }
