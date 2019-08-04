@@ -10,10 +10,16 @@ import {MealGroupModel} from '../meal-group-model';
 export class CartPage implements OnInit {
 
   selectedMeals: MealGroupModel[];
+  totalPrice: number;
   constructor(private mealItemsService: MealItemsService) { }
+
+  getTotalPrice() {
+    return this.mealItemsService.getTotalSelectedMealsPrice();
+  }
 
   ngOnInit() {
     this.selectedMeals = this.mealItemsService.getSelectedMeals();
+    this.totalPrice = this.mealItemsService.getTotalSelectedMealsPrice();
   }
 
 }

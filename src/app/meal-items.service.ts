@@ -118,6 +118,16 @@ export class MealItemsService {
     });
   }
 
+  getTotalSelectedMealsPrice() {
+    let totalPrice = 0;
+    this.selectedMeals.forEach(mealGroup => {
+      mealGroup.meals.forEach(meal => {
+        totalPrice += (meal.displayPrice * meal.orderedCount);
+      });
+    });
+    return totalPrice;
+  }
+
   private addMealToSelectedMeals(selectedMeal: MealModel, selectedMealGroup: MealGroupModel) {
     const mealGroupName = selectedMealGroup.groupName;
     let isMealGroupFound = false;
