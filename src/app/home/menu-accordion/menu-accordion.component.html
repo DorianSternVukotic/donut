@@ -1,18 +1,23 @@
 
 <ion-list>
-  <div *ngFor="let group of groups">
+  <div *ngFor="let mealGroup of mealItems">
     <ion-item class="item-stable"
-              (click)="toggleGroup(group)"
-              [ngClass]="{'active': isGroupShown(group)}">
-      <ion-icon [name]="isGroupShown(group) ? 'remove' : 'add'" ></ion-icon>
+              (click)="toggleGroup(mealGroup)"
+              [ngClass]="{'active': isGroupShown(mealGroup)}">
+      <ion-icon [name]="isGroupShown(mealGroup) ? 'remove' : 'add'" ></ion-icon>
       <!--<i class="icon" [ngClass]="isGroupShown(group) ? 'ion-minus' : 'ion-plus'"></i>-->
        &nbsp;
-       Group {{group.name}}
+       Group {{mealGroup.groupName}}
      </ion-item>
      <ion-item class="item-accordion"
-               *ngFor="let item of group.items"
-               [hidden]="!isGroupShown(group)">
-       {{item}}
+               *ngFor="let meal of mealGroup.meals"
+               [hidden]="!isGroupShown(mealGroup)">
+         <ion-img src="{{meal.image}}"></ion-img>
+         <ion-label>{{meal.name}}</ion-label>
+         {{meal.description}}
+         <ion-button *ngIf="!meal.selected" (click)="addMealToSelected(meal.id)">Add</ion-button>
+         <ion-button *ngIf="meal.selected" (click)="removeMealFromSelected(meal.id)">Added</ion-button>
+
     </ion-item>
   </div>
 </ion-list>

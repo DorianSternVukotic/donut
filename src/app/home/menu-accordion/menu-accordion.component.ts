@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MealItemsService} from '../../meal-items.service';
+import {MealGroupModel} from '../../meal-group-model';
 
 @Component({
   selector: 'app-menu-accordion',
@@ -8,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 export class MenuAccordionComponent implements OnInit {
 // TODO code review this component, needs animation and stuff https://codepen.io/ionic/pen/uJkCz
   groups = [];
+  // TODO core review how to sync this with service-held data ?
+  mealItems: MealGroupModel[];
   shownGroup = null;
 
-  constructor() { }
+  constructor(private mealItemService: MealItemsService) { }
 
   toggleGroup(group) {
     if (this.isGroupShown(group)) {
@@ -25,15 +29,18 @@ export class MenuAccordionComponent implements OnInit {
   }
 
   ngOnInit() {
-    for (let i = 0; i < 10; i++) {
-      this.groups[i] = {
-        name: i,
-        items: []
-      };
-      for (let j = 0; j < 3; j++) {
-        this.groups[i].items.push(i + '-' + j);
-      }
-    }
+    this.mealItems = this.mealItemService.getAvailableMeals();
   }
+
+  addMealToSelected(mealId) {
+    this.mealItemService.addSelectedMeal(mealId);
+    this.mealItems = this.mealItemService.getAvailableMeals();
+    console.log(this.mealItems);
+  }
+  removeMealFromSelected(mealId) {
+    this.mealItemService.removeSelectedMeal(mealId);
+    this.mealItems = this.mealItemService.getAvailableMeals();
+  }
+
 
 }
