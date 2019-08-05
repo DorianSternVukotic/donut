@@ -15,8 +15,7 @@
          <ion-img src="{{meal.image}}"></ion-img>
          <ion-label>{{meal.name}}</ion-label>
          {{meal.description}}
-         <ion-button *ngIf="!meal.selected" (click)="addMealToSelected(meal.id)">Add</ion-button>
-         <ion-button *ngIf="meal.selected" (click)="removeMealFromSelected(meal.id)">Added</ion-button>
+         <ion-button (click)="toggleMeal(mealGroup.groupName, meal.id)">{{ isSelected(meal.id) > -1 ? 'Added' : 'Add' }}</ion-button>
 
     </ion-item>
   </div>
