@@ -10,13 +10,13 @@ import {MealGroupModel} from '../meal-group-model';
 export class CartPage implements OnInit {
 
   selectedMeals: MealGroupModel[];
-  totalPrice: number;
   constructor(private mealItemsService: MealItemsService) { }
 
-  getTotalPrice() {
+  get totalPrice() {
     return this.mealItemsService.getTotalSelectedMealsPrice();
   }
   get cart() {
+    console.log(this.mealItemsService.cart);
     return this.mealItemsService.cart;
   }
   

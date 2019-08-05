@@ -9,7 +9,7 @@ import {MealGroupModel} from '../../meal-group-model';
 })
 export class MenuAccordionComponent implements OnInit {
   private _mealItems: MealGroupModel[] = [];
-  private _selected: number[] = [];
+  private _selectedMeals: number[] = [];
 // TODO code review this component, needs animation and stuff https://codepen.io/ionic/pen/uJkCz
   groups = [];
   // TODO core review how to sync this with service-held data ?
@@ -32,16 +32,16 @@ export class MenuAccordionComponent implements OnInit {
   }
 
   isSelected(mealId) {
-    return this._selected.findIndex(i => i === mealId);
+    return this._selectedMeals.findIndex(i => i === mealId);
   }
 
   toggleMeal(groupName: string, mealId: number) {
     const i = this.isSelected(mealId);
     if (i > -1) {
-      this._selected.splice(i, 1);
+      this._selectedMeals.splice(i, 1);
       this.mealItemService.removeMeal(mealId);
     } else {
-      this._selected.push(mealId);
+      this._selectedMeals.push(mealId);
       this.mealItemService.addMeal(groupName, mealId);
     }
   }

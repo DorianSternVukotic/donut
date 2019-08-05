@@ -7,7 +7,7 @@ import {forEach} from '@angular-devkit/schematics';
   providedIn: 'root'
 })
 export class MealItemsService {
-  private _cart: { groupName: string; mealId: number }[] = [];
+  private _cart: { groupName: string; mealId: number; orderedCount: number }[] = [];
   // TODO peer review how to sync these values in components that use them ?
 
   private availableMeals: MealGroupModel[] = [
@@ -70,21 +70,35 @@ export class MealItemsService {
   // }
 
   addMeal(groupName: string, mealId: number) {
-    this._cart.push({ groupName, mealId });
+    this._cart.push({ groupName, mealId, orderedCount: 1});
   }
   removeMeal(mealId: number) {
-    this._cart.filter(i => i.mealId !== mealId);
+    this._cart = this._cart.filter( i => {
+      if (i.mealId === mealId) {
+        i.orderedCount = 0;
+        return false;
+      }
+      return true;
+    });
   }
   get cart() {
     const store = {};
-    this._cart.forEach(({ groupName, mealId }) => {
+    this._cart.forEach(({ groupName, mealId, orderedCount }) => {
       const prev = store[groupName] ? store[groupName] : [];
-      store[groupName] = prev.concat(mealId);
+      store[groupName] = prev.concat({mealId, orderedCount });
     });
     const cart = Object.keys(store).map(key => {
-      const meals = (store[key] as Array<any>).map(m => 
-        this.availableMeals.find(g => g.groupName === key).meals.find(i => i.id === m)
-      );
+      const meals = (store[key] as Array<any>).map(m => {
+        return this.availableMeals.find(g => {
+          return g.groupName === key;
+        }).meals.find(i => {
+          if (i.id === m.mealId) {
+            i.orderedCount = m.orderedCount;
+            return true;
+          }
+          return false;
+        });
+      });
       return { groupName: key, meals };
     });
     return cart;
@@ -141,8 +155,9 @@ export class MealItemsService {
   // }
 
   getTotalSelectedMealsPrice() {
+    console.log("calculation");
     let totalPrice = 0;
-    this.selectedMeals.forEach(mealGroup => {
+    this.cart.forEach(mealGroup => {
       mealGroup.meals.forEach(meal => {
         totalPrice += (meal.displayPrice * meal.orderedCount);
       });
