@@ -7,6 +7,7 @@ import {forEach} from '@angular-devkit/schematics';
   providedIn: 'root'
 })
 export class MealItemsService {
+  private _cart: { groupName: string; mealId: number }[] = [];
   // TODO peer review how to sync these values in components that use them ?
 
   private availableMeals: MealGroupModel[] = [
@@ -64,59 +65,80 @@ export class MealItemsService {
     return this.availableMeals;
   }
 
-  getSelectedMeals() {
-    return this.selectedMeals;
+  // getSelectedMeals() {
+  //   return this.selectedMeals;
+  // }
+
+  addMeal(groupName: string, mealId: number) {
+    this._cart.push({ groupName, mealId });
+  }
+  removeMeal(mealId: number) {
+    this._cart.filter(i => i.mealId !== mealId);
+  }
+  get cart() {
+    const store = {};
+    this._cart.forEach(({ groupName, mealId }) => {
+      const prev = store[groupName] ? store[groupName] : [];
+      store[groupName] = prev.concat(mealId);
+    });
+    const cart = Object.keys(store).map(key => {
+      const meals = (store[key] as Array<any>).map(m => 
+        this.availableMeals.find(g => g.groupName === key).meals.find(i => i.id === m)
+      );
+      return { groupName: key, meals };
+    });
+    return cart;
   }
 
-  addSelectedMeal(mealId: number) {
-    let selectedMeal: MealModel;
-    let selectedMealGroup: MealGroupModel;
-    this.availableMeals.forEach(mealGroup => {
-      const meals = mealGroup.meals;
-      meals.forEach(meal => {
-        if (meal.id === mealId) {
-          meal.selected = true;
-          meal.orderedCount = 1;
-          selectedMeal = meal;
-          selectedMealGroup = mealGroup;
-        }
-      });
-    });
-    selectedMeal.selected = true;
-    selectedMeal.orderedCount  = 1;
-    this.addMealToSelectedMeals(selectedMeal, selectedMealGroup);
-  }
+  // addSelectedMeal(mealId: number) {
+  //   let selectedMeal: MealModel;
+  //   let selectedMealGroup: MealGroupModel;
+  //   this.availableMeals.forEach(mealGroup => {
+  //     const meals = mealGroup.meals;
+  //     meals.forEach(meal => {
+  //       if (meal.id === mealId) {
+  //         meal.selected = true;
+  //         meal.orderedCount = 1;
+  //         selectedMeal = meal;
+  //         selectedMealGroup = mealGroup;
+  //       }
+  //     });
+  //   });
+  //   selectedMeal.selected = true;
+  //   selectedMeal.orderedCount  = 1;
+  //   this.addMealToSelectedMeals(selectedMeal, selectedMealGroup);
+  // }
 
-  removeSelectedMeal(mealId: number) {
-    this.selectedMeals.forEach(selectedMealGroup => {
-      selectedMealGroup.meals = selectedMealGroup.meals.filter(meal => {
-        // return true if keep, false if drop
-        if (meal.id !== mealId) {
-          return true;
-        } else {
-          this.availableMeals.forEach(mealGroup => {
-            let targetedAvailableMeal = {...mealGroup.meals.find(availableMeal => {
-                // targeted meal is badly named because .find will reassign it to undefined if the last group it doesnt find it
-                if (availableMeal.id === mealId) {
-                  availableMeal.selected = false;
-                  availableMeal.orderedCount = 0;
-                  return true;
-                }
-                return false;
-              })};
-          });
-          meal.orderedCount = 0;
-          return false;
-        }
-      });
-    });
-    this.selectedMeals = this.selectedMeals.filter(mealGroup => {
-      if (mealGroup.meals.length === 0) {
-        return false;
-      }
-      return true;
-    });
-  }
+  // removeSelectedMeal(mealId: number) {
+  //   this.selectedMeals.forEach(selectedMealGroup => {
+  //     selectedMealGroup.meals = selectedMealGroup.meals.filter(meal => {
+  //       // return true if keep, false if drop
+  //       if (meal.id !== mealId) {
+  //         return true;
+  //       } else {
+  //         this.availableMeals.forEach(mealGroup => {
+  //           let targetedAvailableMeal = {...mealGroup.meals.find(availableMeal => {
+  //               // targeted meal is badly named because .find will reassign it to undefined if the last group it doesnt find it
+  //               if (availableMeal.id === mealId) {
+  //                 availableMeal.selected = false;
+  //                 availableMeal.orderedCount = 0;
+  //                 return true;
+  //               }
+  //               return false;
+  //             })};
+  //         });
+  //         meal.orderedCount = 0;
+  //         return false;
+  //       }
+  //     });
+  //   });
+  //   this.selectedMeals = this.selectedMeals.filter(mealGroup => {
+  //     if (mealGroup.meals.length === 0) {
+  //       return false;
+  //     }
+  //     return true;
+  //   });
+  // }
 
   getTotalSelectedMealsPrice() {
     let totalPrice = 0;
@@ -128,22 +150,22 @@ export class MealItemsService {
     return totalPrice;
   }
 
-  private addMealToSelectedMeals(selectedMeal: MealModel, selectedMealGroup: MealGroupModel) {
-    const mealGroupName = selectedMealGroup.groupName;
-    let isMealGroupFound = false;
-    this.selectedMeals.forEach(mealGroup => {
-      if (mealGroup.groupName === mealGroupName) {
-        mealGroup.meals.push(selectedMeal);
-        isMealGroupFound = true;
-      }
-    });
-    if (false === isMealGroupFound) {
-      this.selectedMeals.push({
-        groupName: mealGroupName,
-        meals: [selectedMeal]
-      });
-    }
-  }
+  // private addMealToSelectedMeals(selectedMeal: MealModel, selectedMealGroup: MealGroupModel) {
+  //   const mealGroupName = selectedMealGroup.groupName;
+  //   let isMealGroupFound = false;
+  //   this.selectedMeals.forEach(mealGroup => {
+  //     if (mealGroup.groupName === mealGroupName) {
+  //       mealGroup.meals.push(selectedMeal);
+  //       isMealGroupFound = true;
+  //     }
+  //   });
+  //   if (false === isMealGroupFound) {
+  //     this.selectedMeals.push({
+  //       groupName: mealGroupName,
+  //       meals: [selectedMeal]
+  //     });
+  //   }
+  // }
 
   constructor() { }
 }
