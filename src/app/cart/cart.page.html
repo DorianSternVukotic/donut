@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <div *ngFor="let mealGroup of selectedMeals">
+    <div *ngFor="let mealGroup of cart">
       <h2>{{mealGroup.groupName}}</h2>
       <ion-item *ngFor="let meal of mealGroup.meals ">
         <ion-grid>

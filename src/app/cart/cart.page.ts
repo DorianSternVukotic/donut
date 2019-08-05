@@ -16,10 +16,13 @@ export class CartPage implements OnInit {
   getTotalPrice() {
     return this.mealItemsService.getTotalSelectedMealsPrice();
   }
-
+  get cart() {
+    return this.mealItemsService.cart;
+  }
+  
   ngOnInit() {
-    this.selectedMeals = this.mealItemsService.getSelectedMeals();
-    this.totalPrice = this.mealItemsService.getTotalSelectedMealsPrice();
+    // this.selectedMeals = this.mealItemsService.getSelectedMeals();
+    // this.totalPrice = this.mealItemsService.getTotalSelectedMealsPrice();
   }
 
 }
