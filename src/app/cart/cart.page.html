@@ -9,30 +9,46 @@
 
 <ion-content>
   <ion-list>
-    <div *ngFor="let mealGroup of cart">
-      <h2>{{mealGroup.groupName}}</h2>
-      <ion-item *ngFor="let meal of mealGroup.meals ">
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <ion-input type="number" [value]="meal.orderedCount" size="2" ></ion-input>
-            </ion-col>
-            <ion-col>
-              {{meal.name}}
-            </ion-col>
-            <ion-col>
-              {{meal.displayPrice}} kn
-            </ion-col>
-            <ion-col>
-              <ion-button><ion-icon name="close"></ion-icon></ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-    </div>
+    <form [formGroup]="cartForm">
+      <div formArrayName="countOrdered">
+        <div *ngFor="let mealGroup of cart">
+          <h2>{{mealGroup.groupName}}</h2>
+          <ion-item *ngFor="let meal of mealGroup.meals " [formGroupName]="meal.id">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-input type="number" [placeholder]="meal.orderedCount" size="2" formControlName="countNumber" ></ion-input>
+                </ion-col>
+                <ion-col>
+                  {{meal.name}}
+                </ion-col>
+                <ion-col>
+                  {{meal.displayPrice}} kn
+                </ion-col>
+                <ion-col>
+                  <ion-button><ion-icon name="close"></ion-icon></ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </div>
+      </div>
+    </form>
   </ion-list>
   total price : {{totalPrice}}
   <ion-button [routerLink]="['/event']">
     Next
   </ion-button>
+  <!--testForm
+  <form [formGroup]="cartForm">
+    <div formArrayName="countOrdered">
+      <div *ngFor="let countForm of countForms.controls; let i=index" [formGroupName]="i">
+        <label>
+          <input placeholder="2" formControlName="countNumber">
+        </label>
+        <ion-button (click)="deleteCount(i)">delet</ion-button>
+      </div>
+    </div>
+    <ion-button (click)="addCount()">add</ion-button>
+  </form>-->
 </ion-content>

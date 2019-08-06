@@ -155,7 +155,6 @@ export class MealItemsService {
   // }
 
   getTotalSelectedMealsPrice() {
-    console.log("calculation");
     let totalPrice = 0;
     this.cart.forEach(mealGroup => {
       mealGroup.meals.forEach(meal => {
