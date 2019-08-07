@@ -17,53 +17,24 @@ export class CartPage implements OnInit {
               private fb: FormBuilder) { }
 
   get totalPrice() {
-    return this.mealItemsService.getTotalSelectedMealsPrice();
+    return this.mealItemsService.getTotalSelectedMealsPrice(this.cartForm.value);
   }
   get cart() {
     return this.mealItemsService.cart;
   }
 
   ngOnInit() {
-    this.cartForm = this.fb.group({
-      countOrdered: this.fb.array([])
-    });
-    // TODO this does NOT sync if we go back, add more stuff and go to cart again
-    this.cart.forEach(mealGroup => {
-      mealGroup.meals.forEach(meal => {
-        if (typeof this.cartFormArray[meal.id] === 'undefined') {
-          const count = this.fb.group({
-            countNumber: []
-          });
-          this.cartFormArray.insert(meal.id, count);
-          console.log('added to cartForm');
-        }
-      });
-    });
-    console.log(this.cartFormArray);
-    /**this.addCount();
-    this.addCount();
-    this.addCount();
-    this.addCount();
-    this.addCount();
-    this.addCount();
-    this.addCount();
-    console.log(this.cartFormArray);*/
-    this.cartForm.valueChanges.subscribe(console.log);
-    // this.selectedMeals = this.mealItemsService.getSelectedMeals();
-    // this.totalPrice = this.mealItemsService.getTotalSelectedMealsPrice();
+    const ids = {};
+    this.mealItemsService.ids.forEach(({ mealId, orderedCount }) => (ids[mealId] = [orderedCount]));
+    this.cartForm = this.fb.group(ids);
   }
-
-  get cartFormArray() {
-    return this.cartForm.get('countOrdered') as FormArray;
-  }
-
-  addCount() {
-    const count = this.fb.group({
-      countNumber: []
-    });
-    this.cartFormArray.push(count);
-  }
-  deleteCount(i) {
-    this.cartFormArray.removeAt(i);
+  /**
+   * Gets called when page leaves view
+   */
+  ionViewWillLeave() {
+    const { value } = this.cartForm;
+    const cart = this.mealItemsService.ids
+      .map(({ mealId, groupName }) => ({ groupName, mealId, orderedCount: value[mealId] }));
+    this.mealItemsService.replaceCart = cart;
   }
 }
