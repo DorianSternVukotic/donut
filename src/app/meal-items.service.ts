@@ -3,11 +3,12 @@ import {MealModel} from './meal-model';
 import {MealGroupModel} from './meal-group-model';
 import {forEach} from '@angular-devkit/schematics';
 
+type TCart = { groupName: string; mealId: number; orderedCount: number };
 @Injectable({
   providedIn: 'root'
 })
 export class MealItemsService {
-  private _cart: { groupName: string; mealId: number; orderedCount: number }[] = [];
+  private _cart: TCart[] = [];
   // TODO peer review how to sync these values in components that use them ?
 
   private availableMeals: MealGroupModel[] = [
@@ -61,13 +62,16 @@ export class MealItemsService {
 
   private selectedMeals: MealGroupModel[] = [];
 
+  get ids(): TCart[] {
+    return this._cart;
+  }
   getAvailableMeals() {
     return this.availableMeals;
   }
 
-  // getSelectedMeals() {
-  //   return this.selectedMeals;
-  // }
+  set replaceCart(cart: TCart[]) {
+    this._cart = cart;
+  }
 
   addMeal(groupName: string, mealId: number) {
     this._cart.push({ groupName, mealId, orderedCount: 1});
@@ -103,83 +107,19 @@ export class MealItemsService {
     });
     return cart;
   }
-
-  // addSelectedMeal(mealId: number) {
-  //   let selectedMeal: MealModel;
-  //   let selectedMealGroup: MealGroupModel;
-  //   this.availableMeals.forEach(mealGroup => {
-  //     const meals = mealGroup.meals;
-  //     meals.forEach(meal => {
-  //       if (meal.id === mealId) {
-  //         meal.selected = true;
-  //         meal.orderedCount = 1;
-  //         selectedMeal = meal;
-  //         selectedMealGroup = mealGroup;
-  //       }
-  //     });
-  //   });
-  //   selectedMeal.selected = true;
-  //   selectedMeal.orderedCount  = 1;
-  //   this.addMealToSelectedMeals(selectedMeal, selectedMealGroup);
-  // }
-
-  // removeSelectedMeal(mealId: number) {
-  //   this.selectedMeals.forEach(selectedMealGroup => {
-  //     selectedMealGroup.meals = selectedMealGroup.meals.filter(meal => {
-  //       // return true if keep, false if drop
-  //       if (meal.id !== mealId) {
-  //         return true;
-  //       } else {
-  //         this.availableMeals.forEach(mealGroup => {
-  //           let targetedAvailableMeal = {...mealGroup.meals.find(availableMeal => {
-  //               // targeted meal is badly named because .find will reassign it to undefined if the last group it doesnt find it
-  //               if (availableMeal.id === mealId) {
-  //                 availableMeal.selected = false;
-  //                 availableMeal.orderedCount = 0;
-  //                 return true;
-  //               }
-  //               return false;
-  //             })};
-  //         });
-  //         meal.orderedCount = 0;
-  //         return false;
-  //       }
-  //     });
-  //   });
-  //   this.selectedMeals = this.selectedMeals.filter(mealGroup => {
-  //     if (mealGroup.meals.length === 0) {
-  //       return false;
-  //     }
-  //     return true;
-  //   });
-  // }
-
-  getTotalSelectedMealsPrice() {
+  /**
+   * gets orderedCount by id from form
+   * @param formValues current values of the form
+   */
+  getTotalSelectedMealsPrice(formValues: { key: string }) {
     let totalPrice = 0;
     this.cart.forEach(mealGroup => {
       mealGroup.meals.forEach(meal => {
-        totalPrice += (meal.displayPrice * meal.orderedCount);
+        totalPrice += (meal.displayPrice * formValues[meal.id]);
       });
     });
     return totalPrice;
   }
-
-  // private addMealToSelectedMeals(selectedMeal: MealModel, selectedMealGroup: MealGroupModel) {
-  //   const mealGroupName = selectedMealGroup.groupName;
-  //   let isMealGroupFound = false;
-  //   this.selectedMeals.forEach(mealGroup => {
-  //     if (mealGroup.groupName === mealGroupName) {
-  //       mealGroup.meals.push(selectedMeal);
-  //       isMealGroupFound = true;
-  //     }
-  //   });
-  //   if (false === isMealGroupFound) {
-  //     this.selectedMeals.push({
-  //       groupName: mealGroupName,
-  //       meals: [selectedMeal]
-  //     });
-  //   }
-  // }
 
   constructor() { }
 }
