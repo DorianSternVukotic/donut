@@ -9,6 +9,18 @@
 
 <ion-content>
   <ion-grid>
+    <div *ngIf="orderService.orderCompleted">
+      <ion-row>
+        <ion-col>
+          <h1>
+            Order sent
+          </h1>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        You will be notified soon
+      </ion-row>
+    </div>
     <ion-row>
       <ion-col>
         <h1>Novosti</h1>
@@ -42,19 +54,26 @@
       <ion-col>
         <h1>Najpopularnije</h1>
       </ion-col>
-      <ion-col>
-        <ion-button>Više</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="5.5">
-        <app-highligted-item>
-        </app-highligted-item>
-      </ion-col>
-      <ion-col size="5.5">
-        <app-highligted-item>
-        </app-highligted-item>
-      </ion-col>
+      <ion-slides [options]="{slidesPerView:2}">
+        <ion-slide>
+          <ion-col>
+            <app-highligted-item>
+            </app-highligted-item>
+          </ion-col>
+        </ion-slide>
+        <ion-slide>
+          <ion-col>
+            <app-highligted-item>
+            </app-highligted-item>
+          </ion-col>
+        </ion-slide>
+        <ion-slide>
+          <ion-col>
+            <app-highligted-item>
+            </app-highligted-item>
+          </ion-col>
+        </ion-slide>
+      </ion-slides>
     </ion-row>
     <ion-row>
       <ion-col>

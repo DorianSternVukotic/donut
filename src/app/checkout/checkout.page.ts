@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EventServiceService} from '../event-service.service';
 import {MealItemsService} from '../meal-items.service';
+import {OrderService} from '../order.service';
 
 @Component({
   selector: 'app-checkout',
@@ -10,7 +11,8 @@ import {MealItemsService} from '../meal-items.service';
 export class CheckoutPage implements OnInit {
 
   constructor(private eventService: EventServiceService,
-              private mealItemsService: MealItemsService) {
+              private mealItemsService: MealItemsService,
+              private orderService: OrderService) {
 
   }
   get event() {
@@ -19,6 +21,10 @@ export class CheckoutPage implements OnInit {
 
   get mealItems() {
     return this.mealItemsService;
+  }
+
+  placeOrder() {
+    this.orderService.orderCompleted = true;
   }
 
   ngOnInit() {
