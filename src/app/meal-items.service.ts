@@ -121,5 +121,28 @@ export class MealItemsService {
     return totalPrice;
   }
 
+  getFullPrice() {
+    let price = 0;
+    const theftRate = 25;
+    let fullPrice: {
+      base: number,
+      VAT: number,
+      total: number
+    } = {
+      base: 0,
+      VAT: 0,
+      total: 0
+    };
+    this.cart.forEach(mealGroup => {
+      mealGroup.meals.forEach(meal => {
+        price += (meal.displayPrice * meal.orderedCount);
+      });
+    });
+    fullPrice.total = price;
+    fullPrice.base = price / (1 + (theftRate / 100));
+    fullPrice.VAT = fullPrice.total - fullPrice.base;
+
+    return fullPrice;
+  }
   constructor() { }
 }

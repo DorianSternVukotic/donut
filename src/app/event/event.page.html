@@ -8,5 +8,74 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <form [formGroup]="eventForm">
+      <ion-grid>
+        <ion-row>
+          <ion-col><h1>Event details</h1></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="number" placeholder="1" formControlName="peopleCount"></ion-input>
+          </ion-col>
+          <ion-col>
+            Number of people
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="number" placeholder="1" formControlName="tentCount"></ion-input>
+          </ion-col>
+          <ion-col>
+            Number of tents
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="number" placeholder="1" formControlName="waiterCount"></ion-input>
+          </ion-col>
+          <ion-col>
+            Number of waiters
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-textarea placeholder="Leave a note" formControlName="note"></ion-textarea>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col><h1>Choose date</h1></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <!-- rename months and days if required https://github.com/write2sv/ionic4-date-picker-->
+            <ionic-calendar-date-picker (onSelect)="updateDate($event)"></ionic-calendar-date-picker>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col><h1>Contact info</h1></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="text" placeholder="Name and surname" formControlName="fullName"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="tel" placeholder="phone" formControlName="phone"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    <ion-button [routerLink]="['/checkout']">Checkout</ion-button>
+  </ion-list>
 </ion-content>

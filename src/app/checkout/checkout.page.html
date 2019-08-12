@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/event"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Checkout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let mealGroup of mealItems.cart">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h2>{{mealGroup.groupName}}</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let meal of mealGroup.meals">
+          <ion-col>
+            {{meal.orderedCount}}
+          </ion-col>
+          <ion-col>
+            {{meal.name}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h2>Event details</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{event.eventParameters.peopleCount}}
+          </ion-col>
+          <ion-col>
+            People
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{event.eventParameters.tentCount}}
+          </ion-col>
+          <ion-col>
+            Tents
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{event.eventParameters.waiterCount}}
+          </ion-col>
+          <ion-col>
+            Waiters
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h2>Note</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{event.eventParameters.note}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h2>Date</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{event.eventParameters.date}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h2>Organizer</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{event.eventParameters.fullName}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{event.eventParameters.email}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{event.eventParameters.phone}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h2>Approximate price</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            Base
+          </ion-col>
+          <ion-col>
+            {{mealItems.getFullPrice().base}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            VAT
+          </ion-col>
+          <ion-col>
+            {{mealItems.getFullPrice().VAT}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            Total
+          </ion-col>
+          <ion-col>
+            {{mealItems.getFullPrice().total}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>

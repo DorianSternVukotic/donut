@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'slider', loadChildren: './slider/slider.module#SliderPageModule' },
   { path: 'cart', loadChildren: './cart/cart.module#CartPageModule' },
   { path: 'event', loadChildren: './event/event.module#EventPageModule' },
+  { path: 'checkout', loadChildren: './checkout/checkout.module#CheckoutPageModule' },
 ];
 
 @NgModule({
