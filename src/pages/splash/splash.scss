@@ -1,0 +1,31 @@
+page-splash {
+  .swiper-pagination-bullets {
+    width: auto !important;
+    left: 20px !important;
+    bottom: 20px !important;
+    .swiper-pagination-bullet-active {
+      background: color($colors, dark, base) !important;
+    }
+  }
+  button.skip {
+    position: absolute !important;
+    bottom: 5px;
+    right: 15px;
+    font-weight: bold;
+  }
+  ion-slide {
+    ion-avatar {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      img {
+        border-radius: 50%;
+        max-width: 180px !important;
+      }
+    }
+    h2 {
+      margin-top: 100px;
+      font-weight: bold;
+    }
+  }
+}
