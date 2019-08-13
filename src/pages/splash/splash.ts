@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { HomePage } from "../home/home";
 
 /**
  * Generated class for the SplashPage page.
@@ -10,16 +11,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-splash',
-  templateUrl: 'splash.html',
+  selector: "page-splash",
+  templateUrl: "splash.html"
 })
 export class SplashPage {
+  constructor(private _nav: NavController) {}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  skip() {
+    this._nav.setRoot(HomePage);
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SplashPage');
-  }
-
 }
