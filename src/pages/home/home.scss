@@ -14,4 +14,60 @@ page-home {
       }
     }
   }
+  ion-content {
+    h2 {
+      font-weight: bold;
+    }
+    div.contain {
+      padding: 2px;
+      border-style: solid;
+      border-color: rgb(241, 241, 241);
+      border-width: 2px;
+      border-radius: 10px;
+    }
+    ion-slides {
+      height: 35vh;
+      ion-card {
+        &.donut-background,
+        &.salad-background {
+          position: relative;
+          max-height: 25vh;
+          border-radius: 10px;
+          margin: 0 !important;
+          width: 100%;
+          div.text {
+            position: absolute;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            h3 {
+              font-weight: bold;
+              font-size: 16px;
+              width: 100%;
+            }
+            span {
+              width: 100%;
+            }
+          }
+        }
+        &.donut-background {
+          div.text {
+            bottom: 0;
+          }
+        }
+        &.salad-background {
+          div.text {
+            top: 0;
+          }
+        }
+      }
+      button {
+        top: -30px;
+        border-radius: 10px !important;
+        background-color: white !important;
+        font-weight: bold;
+      }
+    }
+  }
 }

@@ -16,4 +16,36 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding> </ion-content>
+<ion-content padding>
+  <h2>Novosti</h2>
+  <ion-slides pager>
+    <ion-slide *ngFor="let donut of firstItems">
+      <div class="contain">
+        <ion-card class="donut-background">
+          <img [src]="donut.imgSrc" />
+          <div class="text">
+            <h3>{{ donut.title }}</h3>
+            <span>{{ donut.subtitle }}</span>
+          </div>
+        </ion-card>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <h2>Najpopularnije</h2>
+  <ion-slides pager>
+    <ion-slide *ngFor="let salad of secondItems">
+      <div class="contain">
+        <ion-card class="salad-background">
+          <img [src]="salad.imgSrc" />
+          <div class="text">
+            <h3>{{ salad.title }}</h3>
+          </div>
+        </ion-card>
+      </div>
+      <button outline ion-button color="dark">
+        {{ salad.buttonText }}
+      </button>
+    </ion-slide>
+  </ion-slides>
+  <h2>Menu</h2>
+</ion-content>
