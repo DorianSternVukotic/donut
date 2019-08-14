@@ -11,6 +11,7 @@ import { EventsProvider } from "../providers/events/events";
 import { SplashPageModule } from "../pages/splash/splash.module";
 import { CartPageModule } from "../pages/cart/cart.module";
 import { CheckoutPageModule } from "../pages/checkout/checkout.module";
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   declarations: [MyApp, HomePage],
@@ -19,7 +20,8 @@ import { CheckoutPageModule } from "../pages/checkout/checkout.module";
     IonicModule.forRoot(MyApp),
     SplashPageModule,
     CartPageModule,
-    CheckoutPageModule
+    CheckoutPageModule,
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [MyApp, HomePage],

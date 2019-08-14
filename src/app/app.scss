@@ -13,10 +13,32 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
+@font-face {
+  font-family: "cooper-black";
+  src: url(../assets/fonts/CooperBlackStd.otf);
+  font-weight: 500;
+  font-style: bold;
+}
 .swiper-pagination-bullet {
   background: gray !important;
   &.swiper-pagination-bullet-active {
     background: color($colors, dark, base) !important;
+  }
+}
+
+ion-content {
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  span,
+  p {
+    font-size: 12px;
+    font-family: sans-serif;
+  }
+  button span {
+    font-family: "cooper-black" !important;
   }
 }

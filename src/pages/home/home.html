@@ -42,10 +42,36 @@
           </div>
         </ion-card>
       </div>
-      <button outline ion-button color="dark">
-        {{ salad.buttonText }}
+      <button color="dark" outline ion-button>
+        Dodaj
       </button>
     </ion-slide>
   </ion-slides>
   <h2>Menu</h2>
+  <accordion
+    *ngFor="let group of mealGroups"
+    [title]="group.groupName"
+    [length]="group.meals.length"
+  >
+    <ion-list>
+      <ion-item *ngFor="let meal of group.meals">
+        <ion-thumbnail item-start>
+          <img [src]="meal.image" />
+        </ion-thumbnail>
+        <h3>{{ meal.name }}</h3>
+        <p>{{ meal.description }}</p>
+        <span class="price">{{ meal.displayPrice.toFixed(2) }} kn</span>
+        <button
+          color="dark"
+          [ngClass]="{ active: isSelected(meal.id) > -1 }"
+          (click)="toggleMeal(group.groupName, meal.id)"
+          outline
+          ion-button
+          block
+        >
+          {{ isSelected(meal.id) > -1 ? "Dodano" : "Dodaj" }}
+        </button>
+      </ion-item>
+    </ion-list>
+  </accordion>
 </ion-content>

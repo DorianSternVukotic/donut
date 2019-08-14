@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { TCart, TMealGroup } from "../../interfaces";
+import { TCart } from "../../interfaces";
+import { HOME_MEALS } from "../fakeData";
 
 /*
   Generated class for the MealProvider provider.
@@ -12,61 +13,7 @@ export class MealProvider {
   private _cart: TCart[] = [];
   // TODO peer review how to sync these values in components that use them ?
 
-  private availableMeals: TMealGroup[] = [
-    {
-      groupName: "Apetizers",
-      meals: [
-        {
-          id: 0,
-          name: "salad",
-          displayPrice: 20,
-          description: "Mixed salad",
-          image:
-            "https://ichef.bbci.co.uk/news/660/cpsprodpb/3DAD/production/_104898751_gettyimages-844466808.jpg",
-          selected: false,
-          orderedCount: 0
-        },
-        {
-          id: 1,
-          name: "sandwich",
-          displayPrice: 15,
-          description: "A nice sanwich",
-          image:
-            "https://ichef.bbci.co.uk/news/660/cpsprodpb/3DAD/production/_104898751_gettyimages-844466808.jpg",
-          selected: false,
-          orderedCount: 0
-        }
-      ]
-    },
-    {
-      groupName: "MainCourse",
-      meals: [
-        {
-          id: 3,
-          name: "burger",
-          displayPrice: 25,
-          description: "big burger",
-          image:
-            "https://ichef.bbci.co.uk/news/660/cpsprodpb/3DAD/production/_104898751_gettyimages-844466808.jpg",
-          selected: false,
-          orderedCount: 0
-        },
-        {
-          id: 4,
-          name: "casserole",
-          displayPrice: 30,
-          description: "I dont even know what that word means",
-          image:
-            "https://ichef.bbci.co.uk/news/660/cpsprodpb/3DAD/production/_104898751_gettyimages-844466808.jpg",
-          selected: false,
-          orderedCount: 0
-        }
-      ]
-    }
-  ];
-
-  private selectedMeals: TMealGroup[] = [];
-
+  private availableMeals = HOME_MEALS;
   get ids(): TCart[] {
     return this._cart;
   }

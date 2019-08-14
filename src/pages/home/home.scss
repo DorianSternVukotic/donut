@@ -1,4 +1,5 @@
 page-home {
+  $danger: color($colors, danger, base);
   ion-header {
     padding-top: 20px;
     ion-navbar > div:first-child {
@@ -15,8 +16,9 @@ page-home {
     }
   }
   ion-content {
-    h2 {
-      font-weight: bold;
+    background: rgb(252, 252, 253) !important;
+    button {
+      background-color: white !important;
     }
     div.contain {
       padding: 2px;
@@ -40,10 +42,9 @@ page-home {
             color: white;
             padding: 10px;
             width: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.3);
             h3 {
               font-weight: bold;
-              font-size: 16px;
               width: 100%;
             }
             span {
@@ -64,9 +65,40 @@ page-home {
       }
       button {
         top: -30px;
-        border-radius: 10px !important;
-        background-color: white !important;
-        font-weight: bold;
+      }
+    }
+    accordion {
+      ion-item {
+        ion-thumbnail {
+          height: 100px;
+          width: 100px;
+          img {
+            border-radius: 15px;
+            height: 100% !important;
+            width: 100% !important;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+          }
+        }
+        h3 {
+          margin: 0 !important;
+          text-transform: capitalize;
+          font-weight: bold !important;
+        }
+        span.price {
+          font-weight: bolder;
+          color: $danger;
+        }
+        button {
+          width: 70% !important;
+          min-height: 35px;
+          &.active {
+            border-color: $danger;
+            background: $danger !important;
+            color: white;
+          }
+        }
       }
     }
   }
