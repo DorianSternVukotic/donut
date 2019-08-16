@@ -2,10 +2,6 @@ page-home {
   $danger: color($colors, danger, base);
   ion-header {
     padding-top: 20px;
-    ion-navbar > div:first-child {
-      background: white;
-      border: none !important;
-    }
     button[color="dark"] {
       border-color: rgb(241, 241, 241);
       border-width: 2px;
@@ -99,6 +95,13 @@ page-home {
             color: white;
           }
         }
+      }
+    }
+    button[color="danger"] {
+      background: $danger !important;
+      color: white;
+      span {
+        font-size: 1.4rem !important;
       }
     }
   }

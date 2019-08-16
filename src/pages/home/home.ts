@@ -3,6 +3,7 @@ import { NavController } from "ionic-angular";
 import { HOME_FIRST, HOME_SECOND } from "../../providers/fakeData";
 import { TMealGroup } from "../../interfaces";
 import { MealProvider } from "../../providers/meal/meal";
+import { CartPage } from "../cart/cart";
 
 @Component({
   selector: "page-home",
@@ -15,7 +16,10 @@ export class HomePage {
   groups = [];
   // TODO core review how to sync this with service-held data ?
   // shownGroup = null;
-  constructor(private _mealsProvider: MealProvider) {}
+  constructor(
+    private _mealsProvider: MealProvider,
+    private _nav: NavController
+  ) {}
 
   get firstItems() {
     return HOME_FIRST;
@@ -29,6 +33,11 @@ export class HomePage {
 
   ngOnInit() {
     this._mealGroups = this._mealsProvider.getAvailableMeals();
+  }
+  go(where: string) {
+    if (where === "cart") {
+      this._nav.push(CartPage);
+    }
   }
   image(src: string) {
     return { "background-image": `url('${src}');` };

@@ -1,3 +1,58 @@
 page-cart {
-
+  $dark: color($colors, dark, base);
+  ion-header {
+    padding-top: 20px;
+    button > span.button-inner {
+      padding: 5px 8px;
+    }
+  }
+  ion-content {
+    ion-item-divider {
+      background-color: white !important;
+    }
+    div.meal-item {
+      padding-left: 6px;
+      ion-col.meal-input {
+        padding-right: 8%;
+        & > div.input-container {
+          transition: ease-in, all 0.5s;
+          background: $dark;
+          border-radius: 10px;
+          border: solid 1px $dark;
+          color: white;
+          &:focus-within {
+            background: white;
+            color: $dark;
+          }
+          input {
+            text-align: center !important;
+            width: 100%;
+            margin-right: 0;
+          }
+        }
+      }
+      ion-col.meal-input ~ ion-col {
+        text-transform: capitalize;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+      }
+    }
+    div.space {
+      height: 30px;
+      border-bottom: solid 1px rgb(241, 241, 241);
+      margin: 0 16px;
+    }
+    ion-item {
+      h3 {
+        margin-top: 0 !important;
+        font-family: sans-serif;
+        font-weight: bold !important;
+      }
+      span[item-end] {
+        color: color($colors, danger, base);
+        font-weight: bold;
+      }
+    }
+  }
 }

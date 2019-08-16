@@ -25,6 +25,15 @@
     background: color($colors, dark, base) !important;
   }
 }
+ion-header {
+  ion-navbar,
+  ion-toolbar {
+    & > div:first-child {
+      background: white !important;
+      border: none !important;
+    }
+  }
+}
 
 ion-content {
   h2 {
@@ -40,5 +49,10 @@ ion-content {
   }
   button span {
     font-family: "cooper-black" !important;
+  }
+  ion-card.no-margin {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100%;
   }
 }

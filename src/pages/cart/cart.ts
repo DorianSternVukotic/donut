@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MealProvider } from "../../providers/meal/meal";
+import { TMealGroup } from "../../interfaces";
+import { CheckoutPage } from "../checkout/checkout";
 
 /**
  * Generated class for the CartPage page.
@@ -10,16 +14,47 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-cart',
-  templateUrl: 'cart.html',
+  selector: "page-cart",
+  templateUrl: "cart.html"
 })
 export class CartPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  cartForm: FormGroup;
+  cart: TMealGroup[];
+  constructor(
+    private _nav: NavController,
+    private _builder: FormBuilder,
+    private _mealsProvider: MealProvider
+  ) {}
+  get totalPrice() {
+    return this._mealsProvider.getTotalSelectedMealsPrice(this.cartForm.value);
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CartPage');
+  go() {
+    this._nav.push(CheckoutPage);
   }
-
+  decimals(str: string) {
+    return str ? parseInt(str).toFixed(2) : "0.00";
+  }
+  ionViewWillLoad() {
+    const ids = {};
+    this._mealsProvider.ids.forEach(
+      ({ mealId, orderedCount }) => (ids[mealId] = [orderedCount])
+    );
+    this.cartForm = this._builder.group(ids);
+  }
+  ionViewWillEnter() {
+    this.cart = this._mealsProvider.cart;
+  }
+  /**
+   * Gets called when page leaves view
+   */
+  ionViewWillLeave() {
+    const { value } = this.cartForm;
+    const cart = this._mealsProvider.ids.map(({ mealId, groupName }) => ({
+      groupName,
+      mealId,
+      orderedCount: value[mealId]
+    }));
+    this._mealsProvider.replaceCart = cart;
+  }
+  goBack = () => this._nav.pop();
 }
