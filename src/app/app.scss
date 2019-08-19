@@ -26,6 +26,10 @@
   }
 }
 ion-header {
+  padding-top: 20px;
+  button.back > span.button-inner {
+    padding: 5px 8px;
+  }
   ion-navbar,
   ion-toolbar {
     & > div:first-child {

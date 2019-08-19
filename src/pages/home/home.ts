@@ -4,6 +4,7 @@ import { HOME_FIRST, HOME_SECOND } from "../../providers/fakeData";
 import { TMealGroup } from "../../interfaces";
 import { MealProvider } from "../../providers/meal/meal";
 import { CartPage } from "../cart/cart";
+import { EventsPage } from "../events/events";
 
 @Component({
   selector: "page-home",
@@ -37,6 +38,9 @@ export class HomePage {
   go(where: string) {
     if (where === "cart") {
       this._nav.push(CartPage);
+    }
+    if (where === "events") {
+      this._nav.push(EventsPage);
     }
   }
   image(src: string) {

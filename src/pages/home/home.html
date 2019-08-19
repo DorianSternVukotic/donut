@@ -9,7 +9,7 @@
     <ion-title>A</ion-title>
 
     <ion-buttons end>
-      <button color="dark" ion-button outline icon-only>
+      <button color="dark" (click)="go('cart')" ion-button outline icon-only>
         <ion-icon name="cart"></ion-icon>
       </button>
     </ion-buttons>
@@ -74,7 +74,7 @@
       </ion-item>
     </ion-list>
   </accordion>
-  <button color="danger" (click)="go('cart')" ion-button block>
+  <button color="danger" (click)="go('events')" ion-button block>
     Odredi dogadaj
   </button>
 </ion-content>

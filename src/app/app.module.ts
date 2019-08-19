@@ -12,6 +12,7 @@ import { SplashPageModule } from "../pages/splash/splash.module";
 import { CartPageModule } from "../pages/cart/cart.module";
 import { CheckoutPageModule } from "../pages/checkout/checkout.module";
 import { ComponentsModule } from "../components/components.module";
+import { EventsPageModule } from "../pages/events/events.module";
 
 @NgModule({
   declarations: [MyApp, HomePage],
@@ -21,6 +22,7 @@ import { ComponentsModule } from "../components/components.module";
     SplashPageModule,
     CartPageModule,
     CheckoutPageModule,
+    EventsPageModule,
     ComponentsModule
   ],
   bootstrap: [IonicApp],

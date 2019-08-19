@@ -19,7 +19,7 @@ import { CheckoutPage } from "../checkout/checkout";
 })
 export class CartPage {
   cartForm: FormGroup;
-  cart: TMealGroup[];
+  cart: TMealGroup[] = [];
   constructor(
     private _nav: NavController,
     private _builder: FormBuilder,
@@ -29,7 +29,7 @@ export class CartPage {
     return this._mealsProvider.getTotalSelectedMealsPrice(this.cartForm.value);
   }
   go() {
-    this._nav.push(CheckoutPage);
+    this._nav.push(CheckoutPage, { totalPrice: this.totalPrice });
   }
   decimals(str: string) {
     return str ? parseInt(str).toFixed(2) : "0.00";
