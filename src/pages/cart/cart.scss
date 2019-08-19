@@ -14,11 +14,15 @@ page-cart {
           border-radius: 10px;
           border: solid 1px $dark;
           color: white;
+          max-width: 45px !important;
+          min-height: 40px;
           &:focus-within {
             background: white;
             color: $dark;
           }
           input {
+            font-size: 0.8em !important;
+            font-family: roboto;
             text-align: center !important;
             width: 100%;
             margin-right: 0;
