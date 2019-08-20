@@ -1,17 +1,29 @@
 page-home {
-  $danger: color($colors, danger, base);
   ion-header {
     button[color="dark"] {
+      position: relative;
       border-color: rgb(241, 241, 241);
       border-width: 2px;
       padding: 10px;
       span.button-inner {
         padding: 5px;
       }
+      &.donut-badge {
+        margin-right: 5px;
+        ion-badge {
+          position: absolute;
+          padding: 3px 5px !important;
+          top: -8px;
+          right: -10px;
+          font-family: roboto;
+          font-size: 0.5em;
+          background: $dark;
+        }
+      }
     }
   }
   ion-content {
-    button {
+    button:not(.donut-red) {
       background-color: white !important;
     }
     div.contain {
@@ -28,7 +40,6 @@ page-home {
         &.salad-background {
           position: relative;
           max-height: 25vh;
-          border-radius: 10px;
           margin: 0 !important;
           width: 100%;
           div.text {
@@ -93,13 +104,6 @@ page-home {
             color: white;
           }
         }
-      }
-    }
-    button[color="danger"] {
-      background: $danger !important;
-      color: white;
-      span {
-        font-size: 1.4rem !important;
       }
     }
   }

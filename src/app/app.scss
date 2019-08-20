@@ -57,10 +57,58 @@ ion-content {
   }
   ion-card {
     box-shadow: 0px 2px 20px 0px rgb(237, 237, 237) !important;
+    border-radius: $border-radius !important;
     &.no-margin {
       margin-left: 0 !important;
       margin-right: 0 !important;
       width: 100%;
+    }
+  }
+  // darken calendar selected
+  mat-calendar {
+    div.mat-calendar-body-selected {
+      background-color: $dark;
+    }
+  }
+  // red button
+  button.donut-red {
+    margin-bottom: 20px !important;
+    span {
+      font-size: 1.4rem !important;
+    }
+  }
+  // black square inputs
+  ion-list.donut-square-inputs {
+    ion-grid ion-row {
+      ion-col.input {
+        padding-right: 8%;
+        & > div.input-container {
+          transition: ease-in, all 0.5s !important;
+          background: $dark;
+          border-radius: $border-radius;
+          border: solid 1px $dark;
+          color: white;
+          max-width: 45px !important;
+          min-height: 40px;
+          &:focus-within {
+            background: white;
+            color: $dark;
+          }
+          input {
+            font-size: 0.8em !important;
+            font-family: roboto;
+            text-align: center !important;
+            width: 100%;
+            margin-right: 0;
+          }
+        }
+        & ~ ion-col {
+          text-transform: capitalize;
+          display: flex;
+          align-items: center;
+          font-weight: bold;
+        }
+      }
     }
   }
 }

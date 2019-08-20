@@ -23,7 +23,75 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <mat-calendar></mat-calendar>
-  </ion-card>
+  <form [formGroup]="eventForm">
+    <ion-card class="no-margin">
+      <ion-list class="donut-square-inputs">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="input" col-3>
+              <div class="input-container">
+                <ion-input type="tel" formControlName="people"></ion-input>
+              </div>
+            </ion-col>
+            <ion-col col-9>
+              <span>Broj ljudi</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="input" col-3>
+              <div class="input-container">
+                <ion-input type="tel" formControlName="tents"></ion-input>
+              </div>
+            </ion-col>
+            <ion-col col-9>
+              <span>Broj šatora</span>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col class="input" col-3>
+              <div class="input-container">
+                <ion-input type="tel" formControlName="waiters"></ion-input>
+              </div>
+            </ion-col>
+            <ion-col col-9>
+              <span>Broj konobara</span>
+            </ion-col>
+          </ion-row>
+          <ion-item>
+            <ion-textarea
+              placeholder="Ostavi napomenu"
+              rows="6"
+              formControlName="note"
+            ></ion-textarea>
+          </ion-item>
+        </ion-grid>
+      </ion-list>
+    </ion-card>
+    <h2>Odaberi datum</h2>
+    <ion-card class="no-margin">
+      <mat-calendar
+        [selected]="selectedDate"
+        (selectedChange)="selectedDate = $event"
+      ></mat-calendar>
+    </ion-card>
+    <h2>Ostavi kontakt</h2>
+    <ion-list no-lines class="contact">
+      <ion-item>
+        <ion-label fixed>Ime i prezime</ion-label>
+        <ion-input formControlName="fullName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Email</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Telefon</ion-label>
+        <ion-input formControlName="phone"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <button color="danger" class="donut-red" (click)="go()" ion-button block>
+      Sljedece
+    </button>
+  </form>
 </ion-content>

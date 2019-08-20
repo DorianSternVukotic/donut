@@ -26,15 +26,15 @@
   <h2>Menu</h2>
   <ion-card class="no-margin">
     <form [formGroup]="cartForm">
-      <ion-list>
-        <div class="meal-group" *ngFor="let group of cart">
+      <ion-list class="donut-square-inputs">
+        <div *ngFor="let group of cart">
           <ion-item-divider>
             {{ group.groupName }}
           </ion-item-divider>
           <div class="meal-item" *ngFor="let meal of group.meals">
             <ion-grid>
               <ion-row>
-                <ion-col class="meal-input" col-4>
+                <ion-col class="input" col-4>
                   <div class="input-container">
                     <ion-input
                       type="tel"
@@ -60,7 +60,7 @@
       </ion-list>
     </form>
   </ion-card>
-  <button color="danger" (click)="go()" ion-button block>
+  <button color="danger" class="donut-red" (click)="go()" ion-button block>
     Sljedece
   </button>
 </ion-content>

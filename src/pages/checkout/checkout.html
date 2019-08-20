@@ -35,28 +35,40 @@
       </ion-item>
     </div>
     <ion-item-divider>
+      Detalji događaja
+    </ion-item-divider>
+    <ion-item text-wrap>
+      <span>{{ getEventText("people") }}</span>
+    </ion-item>
+    <ion-item text-wrap>
+      <span>{{ getEventText("tents") }}</span>
+    </ion-item>
+    <ion-item text-wrap>
+      <span>{{ getEventText("waiters") }}</span>
+    </ion-item>
+    <ion-item-divider>
       Napomena
     </ion-item-divider>
-    <ion-item>
-      <span>Zamijeniti svinjsko meso sa janjetinom</span>
+    <ion-item text-wrap>
+      <span>{{ data.note }}</span>
     </ion-item>
     <ion-item-divider>
       Datum događaja
     </ion-item-divider>
     <ion-item>
-      <span>{{ date | date }}</span>
+      <span>{{ data.selectedDate | date }}</span>
     </ion-item>
     <ion-item-divider>
       Organizator
     </ion-item-divider>
     <ion-item>
-      <span>Marko Markovic</span>
+      <span>{{ data.fullName }}</span>
     </ion-item>
     <ion-item>
-      <span>marko@makovic.com</span>
+      <span>{{ data.email }}</span>
     </ion-item>
     <ion-item>
-      <span>091 223 2244</span>
+      <span>{{ data.phone }}</span>
     </ion-item>
 
     <ion-item-divider>
@@ -64,7 +76,7 @@
     </ion-item-divider>
     <ion-item>
       <span>Osnovica</span>
-      <span item-end> {{ decimals(totalPrice) }} kn</span>
+      <span item-end> {{ decimals(data.totalPrice) }} kn</span>
     </ion-item>
     <ion-item>
       <span>PDV (25%)</span>
@@ -72,11 +84,11 @@
     </ion-item>
     <ion-item>
       <span>Ukupno</span>
-      <span item-end> {{ decimals(totalPrice + tax) }} kn</span>
+      <span item-end> {{ decimals(data.totalPrice + tax) }} kn</span>
     </ion-item>
   </ion-list>
   <div padding>
-    <button color="danger" ion-button block>
+    <button color="danger" class="donut-red" ion-button block>
       Posalji upit
     </button>
   </div>

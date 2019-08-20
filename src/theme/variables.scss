@@ -22,6 +22,10 @@ $app-direction: ltr;
 $font-family-md-base: "cooper-black";
 $font-family-ios-base: "cooper-black";
 $font-family-wp-base: "cooper-black";
+$gray: rgb(241, 241, 241);
+$border-radius: 8px;
+$danger: rgb(236, 29, 36);
+$dark: #222;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -34,9 +38,9 @@ $font-family-wp-base: "cooper-black";
 $colors: (
   primary: #488aff,
   secondary: #32db64,
-  danger: #f53d3d,
+  danger: $danger,
   light: #f4f4f4,
-  dark: #222
+  dark: $dark
 );
 
 // App iOS Variables

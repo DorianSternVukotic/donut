@@ -10,33 +10,60 @@ import { TMealGroup, TMeal } from "../../interfaces";
  * Ionic pages and navigation.
  */
 
+type Params = {
+  people: string;
+  tents: string;
+  waiters: string;
+  note: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  selectedDate: Date;
+  totalPrice: number;
+};
 @IonicPage()
 @Component({
   selector: "page-checkout",
   templateUrl: "checkout.html"
 })
 export class CheckoutPage {
-  _date = Date.now();
-  totalPrice = 0;
+  data: Params = {
+    people: "",
+    tents: "",
+    waiters: "",
+    note: "",
+    fullName: "",
+    email: "",
+    phone: "",
+    selectedDate: new Date(),
+    totalPrice: 0
+  };
   cart: TMealGroup[] = [];
   constructor(
     private _nav: NavController,
     private _params: NavParams,
     private _mealsProvider: MealProvider
   ) {}
-  get date() {
-    return this._date;
-  }
   get tax() {
-    return this.totalPrice * 0.25;
+    return this.data.totalPrice * 0.25;
   }
   decimals(str: string) {
     return str ? parseInt(str).toFixed(2) : "0.00";
   }
   goBack = () => this._nav.pop();
   getMealText = ({ name, orderedCount }: TMeal) => `${orderedCount} x ${name}`;
+  getEventText(which: "people" | "tents" | "waiters") {
+    let msg = "Uzvanika";
+    if (which === "tents") {
+      msg = "Šatora";
+    }
+    if (which === "waiters") {
+      msg = "Konobara";
+    }
+    return `${this.data[which]} x ${msg}`;
+  }
   ionViewWillEnter() {
     this.cart = this._mealsProvider.cart;
-    this.totalPrice = this._params.get("totalPrice") || 0;
+    this.data = this._params.data;
   }
 }

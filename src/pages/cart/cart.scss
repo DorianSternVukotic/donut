@@ -1,40 +1,10 @@
 page-cart {
-  $dark: color($colors, dark, base);
   ion-content {
     ion-item-divider {
       background-color: white !important;
     }
     div.meal-item {
       padding-left: 6px;
-      ion-col.meal-input {
-        padding-right: 8%;
-        & > div.input-container {
-          transition: ease-in, all 0.5s;
-          background: $dark;
-          border-radius: 10px;
-          border: solid 1px $dark;
-          color: white;
-          max-width: 45px !important;
-          min-height: 40px;
-          &:focus-within {
-            background: white;
-            color: $dark;
-          }
-          input {
-            font-size: 0.8em !important;
-            font-family: roboto;
-            text-align: center !important;
-            width: 100%;
-            margin-right: 0;
-          }
-        }
-      }
-      ion-col.meal-input ~ ion-col {
-        text-transform: capitalize;
-        display: flex;
-        align-items: center;
-        font-weight: bold;
-      }
     }
     div.space {
       height: 30px;

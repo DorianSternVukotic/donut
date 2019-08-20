@@ -1,9 +1,9 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController } from "ionic-angular";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { MealProvider } from "../../providers/meal/meal";
 import { TMealGroup } from "../../interfaces";
-import { CheckoutPage } from "../checkout/checkout";
+import { EventsPage } from "../events/events";
 
 /**
  * Generated class for the CartPage page.
@@ -29,7 +29,7 @@ export class CartPage {
     return this._mealsProvider.getTotalSelectedMealsPrice(this.cartForm.value);
   }
   go() {
-    this._nav.push(CheckoutPage, { totalPrice: this.totalPrice });
+    this._nav.push(EventsPage, { totalPrice: this.totalPrice });
   }
   decimals(str: string) {
     return str ? parseInt(str).toFixed(2) : "0.00";
