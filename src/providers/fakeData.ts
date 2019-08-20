@@ -17,14 +17,26 @@ export const HOME_FIRST = [
 ];
 
 export const HOME_SECOND = [
-  {
-    title: "Glavno jelo sa piletinom",
-    imgSrc: "assets/imgs/salad.jpg"
-  },
-  {
-    title: "Palacinke sa slaninom",
-    imgSrc: "assets/imgs/pancake.jpg"
-  }
+  [
+    {
+      title: "Glavno jelo sa piletinom",
+      imgSrc: "assets/imgs/salad.jpg"
+    },
+    {
+      title: "Palacinke sa slaninom",
+      imgSrc: "assets/imgs/pancake.jpg"
+    }
+  ],
+  [
+    {
+      title: "Glavno jelo sa piletinom",
+      imgSrc: "assets/imgs/salad.jpg"
+    },
+    {
+      title: "Palacinke sa slaninom",
+      imgSrc: "assets/imgs/pancake.jpg"
+    }
+  ]
 ];
 
 export const HOME_MEALS = [

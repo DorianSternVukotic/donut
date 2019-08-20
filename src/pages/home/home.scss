@@ -17,24 +17,27 @@ page-home {
           right: -10px;
           font-family: roboto;
           font-size: 0.5em;
-          background: $dark;
+          background: $danger;
         }
       }
     }
   }
   ion-content {
-    button:not(.donut-red) {
+    button[color="dark"] {
       background-color: white !important;
     }
-    div.contain {
-      padding: 2px;
-      border-style: solid;
-      border-color: rgb(241, 241, 241);
-      border-width: 2px;
-      border-radius: 10px;
+    h2 {
+      font-size: 16px;
     }
     ion-slides {
-      height: 35vh;
+      height: auto;
+      div.contain {
+        padding: 2px;
+        border-style: solid;
+        border-color: rgb(241, 241, 241);
+        border-width: 2px;
+        border-radius: 10px;
+      }
       ion-card {
         &.donut-background,
         &.salad-background {
@@ -49,12 +52,19 @@ page-home {
             width: 100%;
             background: rgba(0, 0, 0, 0.3);
             h3 {
-              font-weight: bold;
+              font-size: 12px !important;
               width: 100%;
             }
             span {
               width: 100%;
             }
+          }
+          img {
+            height: 120px !important;
+            width: 100% !important;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
           }
         }
         &.donut-background {
@@ -70,6 +80,10 @@ page-home {
       }
       button {
         top: -30px;
+      }
+      div.space {
+        display: block;
+        height: 30px;
       }
     }
     accordion {
