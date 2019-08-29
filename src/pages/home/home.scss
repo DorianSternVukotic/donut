@@ -1,0 +1,124 @@
+page-home {
+  ion-header {
+    button[color="dark"] {
+      position: relative;
+      border-color: rgb(241, 241, 241);
+      border-width: 2px;
+      padding: 10px;
+      span.button-inner {
+        padding: 5px;
+      }
+      &.donut-badge {
+        margin-right: 5px;
+        ion-badge {
+          position: absolute;
+          padding: 3px 5px !important;
+          top: -8px;
+          right: -10px;
+          font-family: roboto;
+          font-size: 0.5em;
+          background: $danger;
+        }
+      }
+    }
+  }
+  ion-content {
+    button[color="dark"] {
+      background-color: white !important;
+    }
+    h2 {
+      font-size: 16px;
+    }
+    ion-slides {
+      height: auto;
+      div.contain {
+        padding: 2px;
+        border-style: solid;
+        border-color: rgb(241, 241, 241);
+        border-width: 2px;
+        border-radius: 10px;
+      }
+      ion-card {
+        &.donut-background,
+        &.salad-background {
+          position: relative;
+          max-height: 25vh;
+          margin: 0 !important;
+          width: 100%;
+          div.text {
+            position: absolute;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            h3 {
+              font-size: 12px !important;
+              width: 100%;
+            }
+            span {
+              width: 100%;
+            }
+          }
+          img {
+            height: 120px !important;
+            width: 100% !important;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+          }
+        }
+        &.donut-background {
+          div.text {
+            bottom: 0;
+          }
+        }
+        &.salad-background {
+          div.text {
+            top: 0;
+          }
+        }
+      }
+      button {
+        top: -30px;
+      }
+      div.space {
+        display: block;
+        height: 30px;
+      }
+    }
+    accordion {
+      ion-item {
+        ion-thumbnail {
+          height: 100px;
+          width: 100px;
+          img {
+            border-radius: 15px;
+            height: 100% !important;
+            width: 100% !important;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+          }
+        }
+        h3 {
+          margin: 0 !important;
+          text-transform: capitalize;
+          font-weight: bold !important;
+        }
+        span.price {
+          font-weight: bolder;
+          color: $danger;
+        }
+        button {
+          width: 70% !important;
+          min-height: 35px;
+          &.active {
+            border-color: $danger;
+            background: $danger !important;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+// http://ionicframework.com/docs/theming/
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+@font-face {
+  font-family: "cooper-black";
+  src: url(../assets/fonts/CooperBlackStd.otf);
+  font-weight: 500;
+  font-style: bold;
+}
+.swiper-pagination-bullet {
+  background: gray !important;
+  &.swiper-pagination-bullet-active {
+    background: color($colors, dark, base) !important;
+  }
+}
+ion-header {
+  padding-top: 20px;
+  button.back > span.button-inner {
+    padding: 5px 8px;
+  }
+  ion-navbar,
+  ion-toolbar {
+    & > div:first-child {
+      background: white !important;
+      border: none !important;
+    }
+  }
+}
+
+ion-content {
+  background: rgb(252, 252, 253) !important;
+  h2 {
+    font-size: 16px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  span,
+  p {
+    font-size: 12px;
+    font-family: sans-serif;
+  }
+  button span {
+    font-family: "cooper-black" !important;
+  }
+  ion-card {
+    box-shadow: 0px 2px 20px 0px rgb(237, 237, 237) !important;
+    border-radius: $border-radius !important;
+    &.no-margin {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      width: 100%;
+    }
+  }
+  // darken calendar selected
+  mat-calendar {
+    div.mat-calendar-body-selected {
+      background-color: $dark;
+    }
+  }
+  // red button
+  button.donut-red {
+    margin-bottom: 20px !important;
+    span {
+      font-size: 1.4rem !important;
+    }
+  }
+  // black square inputs
+  ion-list.donut-square-inputs {
+    ion-grid ion-row {
+      ion-col.input {
+        padding-right: 8%;
+        & > div.input-container {
+          transition: ease-in, all 0.5s !important;
+          background: $dark;
+          border-radius: $border-radius;
+          border: solid 1px $dark;
+          color: white;
+          max-width: 45px !important;
+          min-height: 40px;
+          &:focus-within {
+            background: white;
+            color: $dark;
+          }
+          input {
+            font-size: 0.8em !important;
+            font-family: roboto;
+            text-align: center !important;
+            width: 100%;
+            margin-right: 0;
+          }
+        }
+        & ~ ion-col {
+          text-transform: capitalize;
+          display: flex;
+          align-items: center;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

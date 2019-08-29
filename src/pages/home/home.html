@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button color="dark" ion-button outline icon-only>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>A</ion-title>
+
+    <ion-buttons end>
+      <button color="dark" class="donut-badge" ion-button outline icon-only>
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge>2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Novosti</h2>
+  <ion-slides pager>
+    <ion-slide *ngFor="let donut of firstItems">
+      <div class="contain">
+        <ion-card class="donut-background">
+          <img [src]="donut.imgSrc" />
+          <div class="text">
+            <h3>{{ donut.title }}</h3>
+            <span>{{ donut.subtitle }}</span>
+          </div>
+        </ion-card>
+      </div>
+      <!-- adds space to move the bullets down -->
+      <div class="space"></div>
+    </ion-slide>
+  </ion-slides>
+  <h2>Najpopularnije</h2>
+  <ion-slides pager>
+    <ion-slide *ngFor="let pair of secondItems">
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let salad of pair" col-6>
+            <div class="contain">
+              <ion-card class="salad-background">
+                <img [src]="salad.imgSrc" />
+                <div class="text">
+                  <h3>{{ salad.title }}</h3>
+                </div>
+              </ion-card>
+            </div>
+            <button color="dark" outline ion-button>
+              Dodaj
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
+  <h2>Menu</h2>
+  <accordion
+    *ngFor="let group of mealGroups"
+    [title]="group.groupName"
+    [length]="group.meals.length"
+  >
+    <ion-list>
+      <ion-item *ngFor="let meal of group.meals">
+        <ion-thumbnail item-start>
+          <img [src]="meal.image" />
+        </ion-thumbnail>
+        <h3>{{ meal.name }}</h3>
+        <p>{{ meal.description }}</p>
+        <span class="price">{{ meal.displayPrice.toFixed(2) }} kn</span>
+        <button
+          color="dark"
+          [ngClass]="{ active: isSelected(meal.id) > -1 }"
+          (click)="toggleMeal(group.groupName, meal.id)"
+          outline
+          ion-button
+          block
+        >
+          {{ isSelected(meal.id) > -1 ? "Dodano" : "Dodaj" }}
+        </button>
+      </ion-item>
+    </ion-list>
+  </accordion>
+  <button
+    color="danger"
+    class="donut-red"
+    (click)="go('cart')"
+    ion-button
+    block
+  >
+    Odredi dogadaj
+  </button>
+</ion-content>

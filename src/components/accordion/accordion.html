@@ -1,0 +1,18 @@
+<ion-card>
+  <ion-list>
+    <button class="accordion-label" (click)="toggle()" detail-none ion-item>
+      {{ title }}
+      <ion-icon
+        [name]="isOpen ? 'md-arrow-dropup' : 'md-arrow-dropdown'"
+        item-end
+      ></ion-icon>
+    </button>
+  </ion-list>
+  <div
+    class="content"
+    [ngStyle]="{ height: height }"
+    [ngClass]="{ closed: !isOpen }"
+  >
+    <ng-content></ng-content>
+  </div>
+</ion-card>

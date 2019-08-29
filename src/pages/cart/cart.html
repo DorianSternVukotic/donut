@@ -1,0 +1,66 @@
+<!--
+  Generated template for the CartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button
+        color="dark"
+        class="back"
+        (click)="goBack()"
+        ion-button
+        outline
+        icon-only
+      >
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Kosarica</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Menu</h2>
+  <ion-card class="no-margin">
+    <form [formGroup]="cartForm">
+      <ion-list class="donut-square-inputs">
+        <div *ngFor="let group of cart">
+          <ion-item-divider>
+            {{ group.groupName }}
+          </ion-item-divider>
+          <div class="meal-item" *ngFor="let meal of group.meals">
+            <ion-grid>
+              <ion-row>
+                <ion-col class="input" col-4>
+                  <div class="input-container">
+                    <ion-input
+                      type="tel"
+                      [formControlName]="meal.id"
+                    ></ion-input>
+                  </div>
+                </ion-col>
+                <ion-col col-5>
+                  <span>{{ meal.name }}</span>
+                </ion-col>
+                <ion-col col-3>
+                  <span>{{ decimals(meal.displayPrice) }} kn</span>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+        <div class="space"></div>
+        <ion-item>
+          <h3>Okvirna cijena</h3>
+          <span item-end> {{ decimals(totalPrice) }} kn </span>
+        </ion-item>
+      </ion-list>
+    </form>
+  </ion-card>
+  <button color="danger" class="donut-red" (click)="go()" ion-button block>
+    Sljedece
+  </button>
+</ion-content>
