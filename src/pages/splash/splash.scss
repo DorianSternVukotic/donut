@@ -1,4 +1,9 @@
 page-splash {
+  ion-content {
+    .scroll-content {
+      overflow-y: hidden !important;
+    }
+  }
   .swiper-pagination-bullets {
     width: auto !important;
     left: 20px !important;
