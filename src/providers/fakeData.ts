@@ -19,22 +19,46 @@ export const HOME_FIRST = [
 export const HOME_SECOND = [
   [
     {
-      title: "Glavno jelo sa piletinom",
-      imgSrc: "assets/imgs/salad.jpg"
+      name: "salad",
+      image: "assets/imgs/salad.jpg",
+      id : 0,
+      displayPrice: 20,
+      description: "Mixed salad",
+      selected: false,
+      orderedCount: 0,
+      groupName: "Apetizers"
     },
     {
-      title: "Palacinke sa slaninom",
-      imgSrc: "assets/imgs/pancake.jpg"
+      name: "sandwich",
+      image: "assets/imgs/pancake.jpg",
+      id : 1,
+      displayPrice: 21,
+      description: "palacinke",
+      selected: false,
+      orderedCount: 0,
+      groupName: "Apetizers"
     }
   ],
   [
     {
-      title: "Glavno jelo sa piletinom",
-      imgSrc: "assets/imgs/salad.jpg"
+      name: "MainCourse",
+      image: "assets/imgs/salad.jpg",
+      id : 2,
+      displayPrice: 22,
+      description: "Mixed pork",
+      selected: false,
+      orderedCount: 0,
+      groupName: "MainCourse"
     },
     {
-      title: "Palacinke sa slaninom",
-      imgSrc: "assets/imgs/pancake.jpg"
+      name: "casserole",
+      image: "assets/imgs/pancake.jpg",
+      id : 3,
+      displayPrice: 23,
+      description: "CHYNA",
+      selected: false,
+      orderedCount: 0,
+      groupName: "MainCourse"
     }
   ]
 ];
@@ -67,7 +91,7 @@ export const HOME_MEALS = [
     groupName: "MainCourse",
     meals: [
       {
-        id: 3,
+        id: 2,
         name: "burger",
         displayPrice: 25,
         description: "big burger",
@@ -76,7 +100,7 @@ export const HOME_MEALS = [
         orderedCount: 0
       },
       {
-        id: 4,
+        id: 3,
         name: "casserole",
         displayPrice: 30,
         description: "I dont even know what that word means",

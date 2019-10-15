@@ -36,20 +36,28 @@
   </ion-slides>
   <h2>Najpopularnije</h2>
   <ion-slides pager>
-    <ion-slide *ngFor="let pair of secondItems">
+    <ion-slide *ngFor="let pair of popularItems">
       <ion-grid>
         <ion-row>
-          <ion-col *ngFor="let salad of pair" col-6>
+          <ion-col *ngFor="let popularItem of pair" col-6>
             <div class="contain">
               <ion-card class="salad-background">
-                <img [src]="salad.imgSrc" />
+                <img [src]="popularItem.image" />
                 <div class="text">
-                  <h3>{{ salad.title }}</h3>
+                  <h3>{{ popularItem.name }}</h3>
                 </div>
               </ion-card>
             </div>
-            <button color="dark" outline ion-button>
-              Dodaj
+            <button
+              color="dark"
+              [ngClass]="{ active: isSelected(popularItem.id) > -1 }"
+              (click)="toggleMeal(popularItem.groupName, popularItem.id)"
+              outline
+              ion-button
+              block
+              class="selectBtn"
+            >
+              {{ isSelected(popularItem.id) > -1 ? "Dodano" : "Dodaj" }}
             </button>
           </ion-col>
         </ion-row>

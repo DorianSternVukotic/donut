@@ -25,7 +25,7 @@ export class HomePage {
   get firstItems() {
     return HOME_FIRST;
   }
-  get secondItems() {
+  get popularItems() {
     return HOME_SECOND;
   }
   get mealGroups() {
