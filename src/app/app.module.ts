@@ -13,6 +13,7 @@ import { CartPageModule } from "../pages/cart/cart.module";
 import { CheckoutPageModule } from "../pages/checkout/checkout.module";
 import { ComponentsModule } from "../components/components.module";
 import { EventsPageModule } from "../pages/events/events.module";
+import { OrderProvider } from '../providers/order/order';
 
 @NgModule({
   declarations: [MyApp, HomePage],
@@ -32,7 +33,8 @@ import { EventsPageModule } from "../pages/events/events.module";
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MealProvider,
-    EventsProvider
+    EventsProvider,
+    OrderProvider
   ]
 })
 export class AppModule {}

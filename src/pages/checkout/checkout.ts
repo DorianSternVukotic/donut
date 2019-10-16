@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { MealProvider } from "../../providers/meal/meal";
 import { TMealGroup, TMeal } from "../../interfaces";
+import {HomePage} from "../home/home";
+import { OrderProvider } from "../../providers/order/order";
 
 /**
  * Generated class for the CheckoutPage page.
@@ -42,7 +44,8 @@ export class CheckoutPage {
   constructor(
     private _nav: NavController,
     private _params: NavParams,
-    private _mealsProvider: MealProvider
+    private _mealsProvider: MealProvider,
+    private _orderProvider: OrderProvider
   ) {}
   get tax() {
     return this.data.totalPrice * 0.25;
@@ -61,6 +64,11 @@ export class CheckoutPage {
       msg = "Konobara";
     }
     return `${this.data[which]} x ${msg}`;
+  }
+
+  confirmOrderRequest(){
+    this._orderProvider.isOrderConfirmed = true;
+    this._nav.push(HomePage);
   }
   ionViewWillEnter() {
     this.cart = this._mealsProvider.cart;

@@ -5,6 +5,7 @@ import { TMealGroup } from "../../interfaces";
 import { MealProvider } from "../../providers/meal/meal";
 import { CartPage } from "../cart/cart";
 import { EventsPage } from "../events/events";
+import { OrderProvider } from "../../providers/order/order";
 
 @Component({
   selector: "page-home",
@@ -19,7 +20,8 @@ export class HomePage {
   // shownGroup = null;
   constructor(
     private _mealsProvider: MealProvider,
-    private _nav: NavController
+    private _nav: NavController,
+    private _orderProvider: OrderProvider
   ) {}
 
   get firstItems() {
@@ -30,6 +32,11 @@ export class HomePage {
   }
   get mealGroups() {
     return this._mealGroups;
+  }
+
+  get isOrderConfirmed(){
+    return this._orderProvider.isOrderConfirmed;
+    //return this._orderProvider.orderConfirmed;
   }
 
   ngOnInit() {
