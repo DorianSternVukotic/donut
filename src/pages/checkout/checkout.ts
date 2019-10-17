@@ -4,6 +4,8 @@ import { MealProvider } from "../../providers/meal/meal";
 import { TMealGroup, TMeal } from "../../interfaces";
 import {HomePage} from "../home/home";
 import { OrderProvider } from "../../providers/order/order";
+import { HttpClient } from "@angular/common/http";
+import 'rxjs/add/operator/catch';
 
 /**
  * Generated class for the CheckoutPage page.
@@ -45,10 +47,15 @@ export class CheckoutPage {
     private _nav: NavController,
     private _params: NavParams,
     private _mealsProvider: MealProvider,
-    private _orderProvider: OrderProvider
+    private _orderProvider: OrderProvider,
+    private http: HttpClient
   ) {}
   get tax() {
     return this.data.totalPrice * 0.25;
+  }
+  message;
+  get postMessage(){
+    return this.message;
   }
   decimals(str: string) {
     return str ? parseInt(str).toFixed(2) : "0.00";
@@ -67,8 +74,45 @@ export class CheckoutPage {
   }
 
   confirmOrderRequest(){
-    this._orderProvider.isOrderConfirmed = true;
-    this._nav.push(HomePage);
+
+    let postFormData = new FormData();
+    postFormData.append('email', this.data.email);
+    postFormData.append('phone', this.data.phone);
+    postFormData.append('personName', this.data.fullName);
+    postFormData.append('numWaiters', this.data.waiters);
+    postFormData.append('numPeople', this.data.people);
+    postFormData.append('numTents', this.data.tents);
+    postFormData.append('date', this.data.selectedDate.getDate() + '-' + this.data.selectedDate.getMonth() + '-' + this.data.selectedDate.getFullYear());
+    postFormData.append('note', this.data.note);
+    postFormData.append('approximatePrice', this.data.totalPrice.toString());
+
+    let i = 0;
+    this.cart.forEach(group=>{
+      group.meals.forEach(meal => {
+        postFormData.append('meals['+i+'][id]', meal.id.toString());
+        postFormData.append('meals['+i+'][amount]', meal.orderedCount.toString());
+      })
+    });
+    try {
+      let postRequest = this.http.post('http://staging.catering-a.com/API/Narudzba/Create', postFormData, {responseType: 'text'});
+      postRequest.subscribe(response => {
+        //lol deadline
+        if(response == 'Order created and mail sent'){
+          this._orderProvider.isOrderConfirmed = true;
+          this._nav.push(HomePage);
+        }
+        else{
+          this.message = "Nešto je pošlo po krivu."
+        }
+      },
+        error => {
+          this.message = "Nešto je pošlo po krivu.";
+          console.log(error);
+        });
+    } catch (e) {
+      this.message = "Nešto je pošlo po krivu.";
+      console.log(e);
+    }
   }
   ionViewWillEnter() {
     this.cart = this._mealsProvider.cart;

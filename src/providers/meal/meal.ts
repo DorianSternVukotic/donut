@@ -21,9 +21,7 @@ export class MealProvider {
     return this._cart;
   }
   getAvailableMeals() {
-    console.log("called getavailablemeals");
     if(isUndefined(this.availableMeals)){
-      console.log(this.availableMeals);
       this.getAPIMeals().subscribe(data => {
         this.availableMeals = data;
         return this.availableMeals;
@@ -112,19 +110,17 @@ export class MealProvider {
     return fullPrice;
   }
   constructor(public http: HttpClient) {
-    console.log('Hello EventsProvider Provider');
   }
 
   getAPIMeals(){
-    let response = this.http.get('http://localhost:8000/API/Roba/Get');
+    let response = this.http.get('http://staging.catering-a.com/API/Roba/Get');
     return response;
   }
 
   getPopularMeals(){
-    let response = this.http.get('http://localhost:8000/API/Roba/Popular/Get');
+    let response = this.http.get('http://staging.catering-a.com/API/Roba/Popular/Get');
 
     let responseData = response.subscribe(data => {
-      console.log(data)
     });
 
     return response;
