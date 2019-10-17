@@ -14,6 +14,7 @@ import { CheckoutPageModule } from "../pages/checkout/checkout.module";
 import { ComponentsModule } from "../components/components.module";
 import { EventsPageModule } from "../pages/events/events.module";
 import { OrderProvider } from '../providers/order/order';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [MyApp, HomePage],
@@ -24,7 +25,8 @@ import { OrderProvider } from '../providers/order/order';
     CartPageModule,
     CheckoutPageModule,
     EventsPageModule,
-    ComponentsModule
+    ComponentsModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [MyApp, HomePage],

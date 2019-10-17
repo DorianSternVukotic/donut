@@ -35,6 +35,7 @@ export class CartPage {
     return str ? parseInt(str).toFixed(2) : "0.00";
   }
   ionViewWillLoad() {
+    console.log("carts loading");
     const ids = {};
     this._mealsProvider.ids.forEach(
       ({ mealId, orderedCount }) => (ids[mealId] = [orderedCount])
@@ -42,7 +43,9 @@ export class CartPage {
     this.cartForm = this._builder.group(ids);
   }
   ionViewWillEnter() {
+    console.log("carts loading");
     this.cart = this._mealsProvider.cart;
+    console.log("ionviewdidenter");
   }
   /**
    * Gets called when page leaves view

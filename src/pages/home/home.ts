@@ -12,23 +12,25 @@ import { OrderProvider } from "../../providers/order/order";
   templateUrl: "home.html"
 })
 export class HomePage {
-  private _mealGroups: TMealGroup[] = [];
+  private _mealGroups/*: TMealGroup[] = []*/;
   private _selectedMeals: number[] = [];
+  // TODO core review how to sync this with service-held data ?
+  private APIData;
+  private popularMeals;
   // TODO code review this component, needs animation and stuff https://codepen.io/ionic/pen/uJkCz
   groups = [];
-  // TODO core review how to sync this with service-held data ?
   // shownGroup = null;
   constructor(
-    private _mealsProvider: MealProvider,
-    private _nav: NavController,
-    private _orderProvider: OrderProvider
+  private _mealsProvider: MealProvider,
+  private _nav: NavController,
+  private _orderProvider: OrderProvider,
   ) {}
 
   get firstItems() {
     return HOME_FIRST;
   }
   get popularItems() {
-    return HOME_SECOND;
+    return this.popularMeals;
   }
   get mealGroups() {
     return this._mealGroups;
@@ -39,8 +41,19 @@ export class HomePage {
     //return this._orderProvider.orderConfirmed;
   }
 
+  get APIMeals(){
+    return this.APIData;
+  }
+
   ngOnInit() {
     this._mealGroups = this._mealsProvider.getAvailableMeals();
+    this._mealsProvider.getAPIMeals().subscribe(data=>{
+      this.APIData = data;
+      this._mealGroups = data;
+    });
+    this._mealsProvider.getPopularMeals().subscribe( data => {
+      this.popularMeals = data
+    })
   }
   go(where: string) {
     if (where === "cart") {

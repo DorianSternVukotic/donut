@@ -1,6 +1,9 @@
 import { Injectable } from "@angular/core";
 import { TCart } from "../../interfaces";
 import { HOME_MEALS } from "../fakeData";
+import { HttpClient } from "@angular/common/http";
+import 'rxjs/add/operator/map';
+import {isUndefined} from "ionic-angular/es2015/util/util";
 
 /*
   Generated class for the MealProvider provider.
@@ -13,12 +16,22 @@ export class MealProvider {
   private _cart: TCart[] = [];
   // TODO peer review how to sync these values in components that use them ?
 
-  private availableMeals = HOME_MEALS;
+  private availableMeals;
   get ids(): TCart[] {
     return this._cart;
   }
   getAvailableMeals() {
-    return this.availableMeals;
+    console.log("called getavailablemeals");
+    if(isUndefined(this.availableMeals)){
+      console.log(this.availableMeals);
+      this.getAPIMeals().subscribe(data => {
+        this.availableMeals = data;
+        return this.availableMeals;
+      })
+    }
+    else{
+      return this.availableMeals
+    }
   }
 
   set replaceCart(cart: TCart[]) {
@@ -45,17 +58,17 @@ export class MealProvider {
     });
     const cart = Object.keys(store).map(key => {
       const meals = (store[key] as Array<any>).map(m => {
-        return this.availableMeals
-          .find(g => {
+        return this.getAvailableMeals().find(g => {
             return g.groupName === key;
           })
-          .meals.find(i => {
+            .meals.find(i => {
             if (i.id === m.mealId) {
               i.orderedCount = m.orderedCount;
               return true;
             }
             return false;
           });
+
       });
       return { groupName: key, meals };
     });
@@ -98,5 +111,22 @@ export class MealProvider {
 
     return fullPrice;
   }
-  constructor() {}
+  constructor(public http: HttpClient) {
+    console.log('Hello EventsProvider Provider');
+  }
+
+  getAPIMeals(){
+    let response = this.http.get('http://localhost:8000/API/Roba/Get');
+    return response;
+  }
+
+  getPopularMeals(){
+    let response = this.http.get('http://localhost:8000/API/Roba/Popular/Get');
+
+    let responseData = response.subscribe(data => {
+      console.log(data)
+    });
+
+    return response;
+  }
 }
