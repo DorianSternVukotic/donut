@@ -30,7 +30,7 @@ page-home {
       border-radius: 8px!important;
     }
     h2 {
-      font-size: 16px;
+      font-size: 22px;
     }
     ion-slides {
       height: auto;
@@ -50,12 +50,14 @@ page-home {
           width: 100%;
           div.text {
             position: absolute;
+            font-size: 12px;
+            text-align: left;
             color: white;
             padding: 10px;
             width: 100%;
             background: rgba(0, 0, 0, 0.3);
             h3 {
-              font-size: 12px !important;
+              font-size: 18px !important;
               width: 100%;
             }
             span {
@@ -91,9 +93,11 @@ page-home {
         width: 70% !important;
         min-height: 35px;
         border-radius: 8px!important;
+        opacity: 0.9;
+        border:none !important;
         &.active {
           border-color: $danger;
-          background: $danger !important;
+          background: rgb(236,29,36) !important;
           color: white;
         }
       }
@@ -130,13 +134,21 @@ page-home {
           width: 70% !important;
           min-height: 35px;
           border-radius: 8px!important;
+          opacity: 0.9;
+          border:none !important;
           &.active {
             border-color: $danger;
-            background: $danger !important;
+            background: rgb(236,29,36) !important;
             color: white;
           }
         }
       }
     }
+  }
+  .popular-title{
+    color: white;
+  }
+  .navigation-button{
+    min-height: 60px;
   }
 }

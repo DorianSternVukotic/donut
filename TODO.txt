@@ -1,0 +1,6 @@
+checkout loading button for send order
+homepage real content
+app icon
+app splash
+events page is scrolled to date select on open for some reason  ?
+data is lost when going back for event

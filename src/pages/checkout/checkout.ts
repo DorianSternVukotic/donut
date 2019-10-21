@@ -48,7 +48,7 @@ export class CheckoutPage {
     private _params: NavParams,
     private _mealsProvider: MealProvider,
     private _orderProvider: OrderProvider,
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
   get tax() {
     return this.data.totalPrice * 0.25;

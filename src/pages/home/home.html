@@ -1,19 +1,13 @@
 <ion-header>
-  <ion-navbar>
-    <ion-buttons start>
-      <button color="dark" ion-button outline icon-only>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-
+  <ion-navbar text-center hideBackButton="true">
     <ion-title>A</ion-title>
 
-    <!--<ion-buttons end>
-      <button color="dark" class="donut-badge" ion-button outline icon-only>
+    <ion-buttons end>
+      <button color="dark" class="donut-badge" ion-button outline icon-only (click)="go('cart')">
         <ion-icon name="cart"></ion-icon>
-        <ion-badge>2</ion-badge>
+        <ion-badge><!-- number of items in cart--></ion-badge>
       </button>
-    </ion-buttons>-->
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -27,9 +21,9 @@
     <ion-slide *ngFor="let donut of firstItems">
       <div class="contain">
         <ion-card class="donut-background">
-          <img [src]="donut.imgSrc" />
+            <img [src]="donut.imgSrc" />
           <div class="text">
-            <h3>{{ donut.title }}</h3>
+            <h3 >{{ donut.title }}</h3>
             <span>{{ donut.subtitle }}</span>
           </div>
         </ion-card>
@@ -48,7 +42,7 @@
               <ion-card class="salad-background">
                 <img [src]="popularItem.image" />
                 <div class="text">
-                  <h3>{{ popularItem.name }}</h3>
+                  <h3 class="popular-title">{{ popularItem.name }}</h3>
                 </div>
               </ion-card>
             </div>
@@ -97,7 +91,7 @@
   </accordion>
   <button
     color="danger"
-    class="donut-red"
+    class="donut-red navigation-button"
     (click)="go('cart')"
     ion-button
     block
