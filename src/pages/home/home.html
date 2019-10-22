@@ -22,8 +22,8 @@
       <div class="contain">
         <ion-card class="donut-background">
             <img [src]="donut.imgSrc" />
-          <div class="text">
-            <h3 >{{ donut.title }}</h3>
+          <div class="text news-text">
+            <h3 class = "news-title">{{ donut.title }}</h3>
             <span>{{ donut.subtitle }}</span>
           </div>
         </ion-card>
@@ -41,7 +41,7 @@
             <div class="contain">
               <ion-card class="salad-background">
                 <img [src]="popularItem.image" />
-                <div class="text">
+                <div class="text popular-text">
                   <h3 class="popular-title">{{ popularItem.name }}</h3>
                 </div>
               </ion-card>

@@ -55,9 +55,7 @@ page-home {
             color: white;
             padding: 10px;
             width: 100%;
-            background: rgba(0, 0, 0, 0.3);
             h3 {
-              font-size: 18px !important;
               width: 100%;
             }
             span {
@@ -121,13 +119,18 @@ page-home {
             background-position: 50% 50%;
           }
         }
+        p{
+          font-size: 13px!important;
+        }
         h3 {
           margin: 0 !important;
           text-transform: capitalize;
           font-weight: bold !important;
+          font-size: 14px!important;
         }
         span.price {
           font-weight: bolder;
+          font-size:14px;
           color: $danger;
         }
         button {
@@ -147,8 +150,19 @@ page-home {
   }
   .popular-title{
     color: white;
+    font-size: 14px !important;
   }
-  .navigation-button{
-    min-height: 60px;
+  .popular-text{
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.005));
+  }
+  .news-title{
+    font-size: 18px !important;
+    color: white;
+  }
+  .news-text{
+    background: linear-gradient(rgba(0,0,0,0.005), rgba(0,0,0,0.6));
+  }
+  .accordion-label{
+    border-bottom: none!important;
   }
 }

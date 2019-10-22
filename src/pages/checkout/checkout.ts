@@ -62,6 +62,7 @@ export class CheckoutPage {
   }
   goBack = () => this._nav.pop();
   getMealText = ({ name, orderedCount }: TMeal) => `${orderedCount} x ${name}`;
+  getmealTotalPrice = (meal) => {return meal.orderedCount * meal.displayPrice;};
   getEventText(which: "people" | "tents" | "waiters") {
     let msg = "Uzvanika";
     if (which === "tents") {

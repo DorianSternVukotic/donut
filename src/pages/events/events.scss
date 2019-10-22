@@ -32,5 +32,15 @@ page-events {
         }
       }
     }
+    textarea::placeholder{
+      color: rgb(52,50,50)!important;
+      opacity: 1;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  }
+
+  .no-border{
+    border-bottom: none!important;
   }
 }

@@ -33,7 +33,7 @@
           {{ getMealText(meal) }}
         </span>
         <span item-end>
-          {{meal.displayPrice}} kn
+          {{getmealTotalPrice(meal)}} kn
         </span>
       </ion-item>
     </div>
@@ -92,7 +92,7 @@
   </ion-list>
   <p>{{postMessage}}</p>
   <div padding>
-    <button color="danger" class="donut-red" ion-button block (click)="confirmOrderRequest()" >
+    <button color="danger" class="donut-red navigation-button" ion-button block (click)="confirmOrderRequest()" >
       Posalji upit
     </button>
   </div>

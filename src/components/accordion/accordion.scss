@@ -15,4 +15,14 @@ accordion {
       height: 0 !important;
     }
   }
+  .circle.small {
+    display: inline-block;
+    border: 3px solid #525050;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    z-index: 86;
+    position: relative;
+    top: 2px;
+  }
 }

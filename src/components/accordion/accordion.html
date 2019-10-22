@@ -1,7 +1,7 @@
 <ion-card>
   <ion-list>
     <button class="accordion-label" (click)="toggle()" detail-none ion-item>
-      {{ title }}
+      <div class = "circle small"></div>&nbsp;&nbsp;&nbsp;{{ title }}
       <ion-icon
         [name]="isOpen ? 'md-arrow-dropup' : 'md-arrow-dropdown'"
         item-end
