@@ -1,11 +1,10 @@
 <ion-header>
-  <ion-navbar text-center hideBackButton="true">
-    <ion-title>A</ion-title>
-
+  <ion-navbar text-center hideBackButton="true" align-title="center">
+    <ion-title text-center align-title="center"><img [src]="icon"></ion-title>
     <ion-buttons end>
-      <button color="dark" class="donut-badge" ion-button outline icon-only (click)="go('cart')">
+      <button color="dark" class="donut-badge cart" ion-button outline icon-only (click)="go('cart')">
         <ion-icon name="cart"></ion-icon>
-        <ion-badge><!-- number of items in cart--></ion-badge>
+        <ion-badge class ="custom-badge">{{numberOfSelectedMeals}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -14,7 +13,7 @@
 <ion-content padding>
   <div *ngIf="isOrderConfirmed" >
     <h2>Tvoja poruka je poslana.</h2>
-    <p>Javiti ćemo vam se u najkraćem roku</p>
+    <p class="confirmation-message">Javiti ćemo vam se u najkraćem roku</p>
   </div>
   <h2>Novosti</h2>
   <ion-slides pager>

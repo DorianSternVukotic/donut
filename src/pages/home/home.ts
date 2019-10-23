@@ -17,6 +17,7 @@ export class HomePage {
   // TODO core review how to sync this with service-held data ?
   private APIData;
   private popularMeals;
+  private icon = "assets/imgs/donut.jpg";
   // TODO code review this component, needs animation and stuff https://codepen.io/ionic/pen/uJkCz
   groups = [];
   // shownGroup = null;
@@ -34,6 +35,10 @@ export class HomePage {
   }
   get mealGroups() {
     return this._mealGroups;
+  }
+
+  get numberOfSelectedMeals(){
+    return this._selectedMeals.length;
   }
 
   get isOrderConfirmed(){

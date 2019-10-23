@@ -36,6 +36,15 @@ ion-header {
       background: white !important;
       border: none !important;
     }
+
+    ion-title {
+      position: relative;
+      top: 0;
+      left: 10%;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
   }
 }
 
