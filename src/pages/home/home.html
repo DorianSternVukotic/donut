@@ -1,17 +1,26 @@
 <ion-header>
-  <ion-navbar text-center hideBackButton="true" align-title="center">
-    <ion-title text-center align-title="center"><img [src]="icon"></ion-title>
+  <ion-navbar #navbar hideBackButton="true" align-title="center">
+    <ion-title [style.height.px]="toolbarHeight" align-title="center"
+      ><img [src]="icon"
+    /></ion-title>
     <ion-buttons end>
-      <button color="dark" class="donut-badge cart" ion-button outline icon-only (click)="go('cart')">
+      <button
+        color="dark"
+        class="donut-badge cart"
+        ion-button
+        outline
+        icon-only
+        (click)="go('cart')"
+      >
         <ion-icon name="cart"></ion-icon>
-        <ion-badge class ="custom-badge">{{numberOfSelectedMeals}}</ion-badge>
       </button>
+      <ion-badge class="cart-badge">{{ numberOfSelectedMeals }}</ion-badge>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="isOrderConfirmed" >
+  <div *ngIf="isOrderConfirmed">
     <h2>Tvoja poruka je poslana.</h2>
     <p class="confirmation-message">Javiti ćemo vam se u najkraćem roku</p>
   </div>
@@ -20,9 +29,9 @@
     <ion-slide *ngFor="let donut of firstItems">
       <div class="contain">
         <ion-card class="donut-background">
-            <img [src]="donut.imgSrc" />
+          <img [src]="donut.imgSrc" />
           <div class="text news-text">
-            <h3 class = "news-title">{{ donut.title }}</h3>
+            <h3 class="news-title">{{ donut.title }}</h3>
             <span>{{ donut.subtitle }}</span>
           </div>
         </ion-card>
@@ -54,7 +63,7 @@
               block
               class="selectBtn"
             >
-              {{ isSelected(popularItem.id) > -1 ? "Dodano" : "Dodaj" }}
+              {{ isSelected(popularItem.id) > -1 ? 'Dodano' : 'Dodaj' }}
             </button>
           </ion-col>
         </ion-row>
@@ -83,7 +92,7 @@
           ion-button
           block
         >
-          {{ isSelected(meal.id) > -1 ? "Dodano" : "Dodaj" }}
+          {{ isSelected(meal.id) > -1 ? 'Dodano' : 'Dodaj' }}
         </button>
       </ion-item>
     </ion-list>

@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-toolbar>
-    <ion-buttons start>
+    <ion-buttons left>
       <button
         color="dark"
         class="back"
@@ -57,7 +57,7 @@
               <span>Broj konobara</span>
             </ion-col>
           </ion-row>
-          <ion-item class = "no-border">
+          <ion-item class="no-border">
             <ion-textarea
               placeholder="Ostavi napomenu"
               rows="6"
@@ -77,7 +77,10 @@
     <h2>Ostavi kontakt</h2>
     <ion-list no-lines class="contact">
       <ion-item>
-        <ion-input formControlName="fullName" placeholder="Ime i prezime"></ion-input>
+        <ion-input
+          formControlName="fullName"
+          placeholder="Ime i prezime"
+        ></ion-input>
       </ion-item>
       <ion-item>
         <ion-input formControlName="email" placeholder="Email"></ion-input>
@@ -87,7 +90,13 @@
       </ion-item>
     </ion-list>
 
-    <button color="danger" class="donut-red navigation-button" (click)="go()" ion-button block>
+    <button
+      color="danger"
+      class="donut-red navigation-button"
+      (click)="go()"
+      ion-button
+      block
+    >
       Sljedece
     </button>
   </form>
