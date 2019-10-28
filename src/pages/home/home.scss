@@ -13,10 +13,9 @@ page-home {
         ion-badge {
           position: absolute;
           padding: 3px 5px !important;
-          top: 0px;
-          right: 0px;
-          width: 24px;
-          height: 24px;
+          top: -5px;
+          right: -5px;
+          border-radius: 50%;
           font-family: roboto;
           font-size: 0.5em;
           background: $danger;
