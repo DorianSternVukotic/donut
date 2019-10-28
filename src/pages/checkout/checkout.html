@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-toolbar>
-    <ion-buttons start>
+    <ion-buttons left>
       <button
         color="dark"
         class="back"
@@ -32,22 +32,20 @@
         <span>
           {{ getMealText(meal) }}
         </span>
-        <span item-end>
-          {{getmealTotalPrice(meal)}} kn
-        </span>
+        <span item-end> {{ getmealTotalPrice(meal) }} kn </span>
       </ion-item>
     </div>
     <ion-item-divider>
       Detalji događaja
     </ion-item-divider>
     <ion-item text-wrap>
-      <span>{{ getEventText("people") }}</span>
+      <span>{{ getEventText('people') }}</span>
     </ion-item>
     <ion-item text-wrap>
-      <span>{{ getEventText("tents") }}</span>
+      <span>{{ getEventText('tents') }}</span>
     </ion-item>
     <ion-item text-wrap>
-      <span>{{ getEventText("waiters") }}</span>
+      <span>{{ getEventText('waiters') }}</span>
     </ion-item>
     <ion-item-divider>
       Napomena
@@ -90,9 +88,15 @@
       <span item-end> {{ decimals(data.totalPrice + tax) }} kn</span>
     </ion-item>
   </ion-list>
-  <p>{{postMessage}}</p>
+  <p>{{ postMessage }}</p>
   <div padding>
-    <button color="danger" class="donut-red navigation-button" ion-button block (click)="confirmOrderRequest()" >
+    <button
+      color="danger"
+      class="donut-red navigation-button"
+      ion-button
+      block
+      (click)="confirmOrderRequest()"
+    >
       Posalji upit
     </button>
   </div>
