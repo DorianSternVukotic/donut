@@ -30,7 +30,7 @@ ion-header {
   button.back > span.button-inner {
     padding: 5px 8px;
   }
-  ion-navbar,
+
   ion-toolbar {
     & > div:first-child {
       background: white !important;
@@ -41,6 +41,17 @@ ion-header {
       justify-content: center;
       align-items: center;
       text-align: center;
+    }
+    .back{
+      position: relative;
+      border-color: rgb(241, 241, 241);
+      border-width: 2px;
+      border-radius: 10%;
+      padding: 10px;
+      width: 56px !important;
+      height: 56px !important;
+      font-size: 17px;
+      z-index: 1;
     }
   }
 }
@@ -110,19 +121,24 @@ ion-content {
       ion-col.input {
         padding-right: 8%;
         & > div.input-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           transition: ease-in, all 0.5s !important;
           background: $dark;
           border-radius: $border-radius;
           border: solid 1px $dark;
           color: white;
-          max-width: 45px !important;
-          min-height: 40px;
+          max-width: 56px !important;
+          min-height: 56px;
+
           &:focus-within {
             background: white;
             color: $dark;
           }
           input {
-            font-size: 0.8em !important;
+            font-weight: bold;
+            font-size: 1em !important;
             font-family: roboto;
             text-align: center !important;
             /*width: 100%;*/
