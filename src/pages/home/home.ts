@@ -18,7 +18,7 @@ export class HomePage {
   // TODO core review how to sync this with service-held data ?
   private APIData
   private popularMeals
-  private icon = 'assets/imgs/donut.jpg'
+  private icon = 'assets/imgs/donutTransparent.png'
   // TODO code review this component, needs animation and stuff https://codepen.io/ionic/pen/uJkCz
   groups = []
   toolbarHeight: any = 'auto'
