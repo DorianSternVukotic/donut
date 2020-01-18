@@ -42,6 +42,7 @@ export class CheckoutPage {
     selectedDate: new Date(),
     totalPrice: 0
   };
+  private isOrderPending;
   cart: TMealGroup[] = [];
   constructor(
     private _nav: NavController,
@@ -76,6 +77,7 @@ export class CheckoutPage {
 
   confirmOrderRequest(){
 
+    this.isOrderPending = true;
     let postFormData = new FormData();
     postFormData.append('email', this.data.email);
     postFormData.append('phone', this.data.phone);
@@ -99,18 +101,22 @@ export class CheckoutPage {
       postRequest.subscribe(response => {
         //lol deadline
         if(response == 'Order created and mail sent'){
+          this.isOrderPending = false;
           this._orderProvider.isOrderConfirmed = true;
           this._nav.push(HomePage);
         }
         else{
+          this.isOrderPending = false;
           this.message = "Nešto je pošlo po krivu."
         }
       },
         error => {
+          this.isOrderPending = false;
           this.message = "Nešto je pošlo po krivu.";
           console.log(error);
         });
     } catch (e) {
+      this.isOrderPending = false;
       this.message = "Nešto je pošlo po krivu.";
       console.log(e);
     }

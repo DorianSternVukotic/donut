@@ -97,7 +97,7 @@
       block
       (click)="confirmOrderRequest()"
     >
-      Posalji upit
+      Posalji upit <ion-spinner *ngIf="isOrderPending"></ion-spinner>
     </button>
   </div>
 </ion-content>
