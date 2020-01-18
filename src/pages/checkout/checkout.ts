@@ -103,6 +103,7 @@ export class CheckoutPage {
         if(response == 'Order created and mail sent'){
           this.isOrderPending = false;
           this._orderProvider.isOrderConfirmed = true;
+          this._mealsProvider.clearCart();
           this._nav.push(HomePage);
         }
         else{

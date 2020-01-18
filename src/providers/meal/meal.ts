@@ -36,6 +36,12 @@ export class MealProvider {
     this._cart = cart;
   }
 
+  clearCart(){
+    this._cart.forEach(({ groupName, mealId, orderedCount }) => {
+      this.removeMeal(mealId);
+    });
+  }
+
   addMeal(groupName: string, mealId: number) {
     this._cart.push({ groupName, mealId, orderedCount: 1 });
   }
