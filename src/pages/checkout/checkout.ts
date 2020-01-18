@@ -104,7 +104,9 @@ export class CheckoutPage {
           this.isOrderPending = false;
           this._orderProvider.isOrderConfirmed = true;
           this._mealsProvider.clearCart();
-          this._nav.push(HomePage);
+          this._nav.push(HomePage).then(res => {
+            this._nav.setRoot(HomePage);
+          });
         }
         else{
           this.isOrderPending = false;
